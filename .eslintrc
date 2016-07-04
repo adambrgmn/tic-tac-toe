@@ -2,6 +2,13 @@
       "parser": "babel-eslint",
       "extends": "airbnb",
       "rules": {
-        "strict": 0
+        "strict": 0,
+        "new-cap": ["error", { "capIsNewExceptions": ["List", "Map"]}]
+      },
+      "globals": {
+        "describe": true,
+        "it": true,
+        "beforeEach": true,
       }
+
     }

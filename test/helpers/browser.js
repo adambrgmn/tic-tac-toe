@@ -1,8 +1,10 @@
 require('babel-register')();
 
-var jsdom = require('jsdom').jsdom;
+const jsdom = require('jsdom').jsdom;
+const chai = require('chai');
+const chaiImmutable = require('chai-immutable');
 
-var exposedProperties = ['window', 'navigator', 'document'];
+const exposedProperties = ['window', 'navigator', 'document'];
 
 global.document = jsdom('');
 global.window = document.defaultView;
@@ -18,3 +20,4 @@ global.navigator = {
 };
 
 documentRef = document;
+chai.use(chaiImmutable);

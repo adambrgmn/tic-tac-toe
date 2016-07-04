@@ -1,6 +1,8 @@
-import './index.scss';
+import './styles.scss';
 
 import React from 'react';
 import { render } from 'react-dom';
 
-render(<div />, document.getElementById('app'));
+import App from './scenes/App';
+
+render(<App />, document.getElementById('app'));
