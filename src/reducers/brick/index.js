@@ -7,32 +7,7 @@
  */
 
 import { List } from 'immutable';
-
-/**
- * getRandomFreeSpot picks a random spot out
- * of all free spots for the computer.
- * This will be replaced by another function
- * that determines the best move for the
- * computer, so that it will be unbeatable.
- *
- * @param  {List}   state  A List of all spots
- * @return {Number}        A random index
- */
-const getRandomFreeSpot = (state) => {
-  // Reduce state to only contain
-  // indecies of free spots.
-  const freeSpots = state.reduce((prev, curr, i) => {
-    if (!curr) return prev.concat(i);
-    return prev;
-  }, List());
-
-  // Get a random number from 0 to
-  // the last index in the List.
-  const randomNum = Math.floor(Math.random() * freeSpots.size);
-
-  // Return a random index of a free spot
-  return freeSpots.get(randomNum);
-};
+import pickSpotComputer from './pickSpotComputer';
 
 /**
  * brick determines the state of store-field brick.
@@ -44,7 +19,7 @@ const getRandomFreeSpot = (state) => {
  * @param  {Object} action  Action object, must contain type
  * @return {List}           Returns new state
  */
-export default function brick(state = List().setSize(8), action) {
+export default function brick(state = List().setSize(9), action) {
   switch (action.type) {
     case 'PICK_SPOT_PLAYER':
       // Ignore move if the player wants to
@@ -56,7 +31,7 @@ export default function brick(state = List().setSize(8), action) {
 
     case 'PICK_SPOT_COMPUTER':
       // Return state with the computer picking a random spot
-      return state.set(getRandomFreeSpot(state), action.player);
+      return state.set(pickSpotComputer(state, action), action.player);
 
     default:
       return state;

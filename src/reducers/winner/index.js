@@ -14,7 +14,7 @@
  * @param  {List}   brick  An immutable List of spots
  * @return {String}        The winner (x or o), draw or undefined
  */
-const getWinner = (brick) => {
+export const getWinner = (brick) => {
   // Check rows
   for (let i = 0; i <= 6; i = i + 3) {
     if (

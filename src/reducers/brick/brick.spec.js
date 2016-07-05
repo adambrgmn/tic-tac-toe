@@ -7,7 +7,7 @@ describe('Reducer: brick', () => {
   describe('case "PICK_SPOT_PLAYER"', () => {
     let initialState;
 
-    beforeEach(() => (initialState = List().setSize(8)));
+    beforeEach(() => (initialState = List().setSize(9)));
 
     it('should occupy a spot on the brick', () => {
       const stateAfter = initialState.set(1, 'x');
@@ -29,15 +29,28 @@ describe('Reducer: brick', () => {
   });
 
   describe('case "PICK_SPOT_COMPUTER"', () => {
-    let initialState;
-
-    beforeEach(() => (initialState = List().setSize(8)));
-
-    it('should return a spot picked by the computer', () => {
-      const action = { type: 'PICK_SPOT_COMPUTER', player: 'o' };
+    it('should return a randomly picked spot on level 0', () => {
+      const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 0 };
 
       expect(brick(undefined, action))
         .to.include('o');
+    });
+
+    // it('should return a semi-randomly picked spot on level 1', () => {
+    //   const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 1 };
+
+    //   expect(brick(undefined, action))
+    //     .to.include('o');
+    // });
+
+    it('should pick the optimal spot on level 2', () => {
+      const stateBefore = List().setSize(9);
+      const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 2 };
+      const nextState = brick(stateBefore, action);
+      console.log(nextState);
+
+      expect(nextState).to.include('o');
+      expect(nextState.get(4)).to.equal('o');
     });
   });
 });
