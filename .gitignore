@@ -1,5 +1,6 @@
 dist
 stats.json
+*.idlk
 
 # Logs
 logs
