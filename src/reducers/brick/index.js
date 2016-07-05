@@ -28,8 +28,7 @@ const getRandomFreeSpot = (state) => {
 
   // Get a random number from 0 to
   // the last index in the List.
-  const freeSpotsSize = freeSpots.size;
-  const randomNum = Math.floor(Math.random() * freeSpotsSize);
+  const randomNum = Math.floor(Math.random() * freeSpots.size);
 
   // Return a random index of a free spot
   return freeSpots.get(randomNum);

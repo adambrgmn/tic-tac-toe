@@ -6,49 +6,52 @@
  */
 
 /**
- * getPlayerBricks is a function that reduces
- * all of a player bricks to a string, which
- * later can be used to match against winning
- * combinations.
+ * getWinner returns the winner, if there
+ * is one. Otherwise, if all spots are taken,
+ * it returns draw. If no condition matches
+ * it will return undefined.
  *
- * @param  {Array}  brick   An array of all occupied bricks
- * @param  {String} player  The player, either x or o
- * @return {String}         The bricks owned
+ * @param  {List}   brick  An immutable List of spots
+ * @return {String}        The winner (x or o), draw or undefined
  */
-const getPlayerBricks = (brick, player) => brick.reduce((p, c, i) => {
-  // If current matches player concat it to string
-  if (c === player) return `${p}${i}`;
-  return p;
-}, '');
+const getWinner = (brick) => {
+  // Check rows
+  for (let i = 0; i <= 6; i = i + 3) {
+    if (
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + 1) &&
+      brick.get(i) === brick.get(i + 2)
+    ) {
+      return brick.get(i);
+    }
+  }
 
-/**
- * constructiRegEx constructs a regular expression
- * out of possible winning combinations to match
- * against a winners moves.
- *
- * @return {RegExp} A regular expression to match winning combinations
- */
-const constructRegEx = () => {
-  // Combinations of winning moves
-  const winningMoves = ['012', '345', '678', '036', '147', '258', '048', '246'];
+  // Check columns
+  for (let i = 0; i <= 2; i++) {
+    if (
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + 3) &&
+      brick.get(i + 3) === brick.get(i + 6)
+    ) {
+      return brick.get(i);
+    }
+  }
 
-  // Reduce winning moves to a RegExp-like string
-  const re = winningMoves.reduce((pre, cur, i, a) => (
-    `${pre}(${cur.split('').reduce((p, c) => `${p}\\d*${c}`, '')})${i === a.length - 1 ? '' : '|'}`
-  ), '');
+  // Check diagonals
+  for (let i = 0, j = 4; i <= 2; i = i + 2, j = j - 2) {
+    if (
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + j) &&
+      brick.get(i + j) === brick.get(i + 2 * j)
+    ) {
+      return brick.get(i);
+    }
+  }
 
-  // Return new RegExp constructed out of re-string
-  return new RegExp(`(${re})`);
+  const freeSpots = brick.filter(s => s);
+  if (freeSpots.size === 9) return 'draw';
+  return undefined;
 };
-
-/**
- * winningMove determines if a players combination
- * of bricks is a winning combination or not
- *
- * @param  {String}  brick  A string of bricks
- * @return {Boolean}
- */
-const winningMove = (brick) => constructRegEx().test(brick);
 
 /**
  * winner determines the state of store-field winner
@@ -62,24 +65,10 @@ const winningMove = (brick) => constructRegEx().test(brick);
  * @return {String}         Undefined, x, o or draw
  */
 export default function winner(state = undefined, action) {
-  let xs;
-  let os;
-
   switch (action.type) {
     case 'CHECK_WINNER':
-      // Get both players bricks
-      xs = getPlayerBricks(action.brick, 'x');
-      os = getPlayerBricks(action.brick, 'o');
+      return getWinner(action.brick);
 
-      // Determine if anyone of them is a winner
-      if (winningMove(xs)) return 'x';
-      if (winningMove(os)) return 'o';
-
-      // If all bricks are occupied return 'draw'
-      if (xs.length + os.length === 9) return 'draw';
-
-      // Otherwise return state
-      return state;
     default:
       return state;
   }

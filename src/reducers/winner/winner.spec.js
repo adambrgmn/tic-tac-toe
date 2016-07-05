@@ -8,10 +8,16 @@ describe('Reducer: winner', () => {
     it('should return a winner, if possible', () => {
       expect(winner(undefined, { type: 'CHECK_WINNER', brick: List(['x', 'x', 'x']) }))
         .to.equal('x');
+
       expect(winner(undefined, {
         type: 'CHECK_WINNER',
         brick: List(['x', 'o', 'o', 'x', 'o', 'x', 'o', 'x', 'x']),
       })).to.equal('o');
+
+      expect(winner(undefined, {
+        type: 'CHECK_WINNER',
+        brick: List(['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x']),
+      })).to.equal('x');
     });
 
     it('should return "draw" if the game ends in draw', () => {
