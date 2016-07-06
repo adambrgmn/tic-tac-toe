@@ -27,6 +27,7 @@ const getRandomFreeSpot = (state) => {
   return freeSpots.get(randomNum);
 };
 
+
 const getMasterFreeSpot = (state, player) => {
   const availableSpots = state.reduce((prev, curr, i) => {
     if (!curr) return prev.push(i);
@@ -48,6 +49,7 @@ const getMasterFreeSpot = (state, player) => {
 
   return sortedActions.getIn([0, 0]);
 };
+
 
 export default function pickSpotComputer(state, action) {
   switch (action.level) {

@@ -44,13 +44,20 @@ describe('Reducer: brick', () => {
     // });
 
     it('should pick the optimal spot on level 2', () => {
-      const stateBefore = List().setSize(9);
+      const stateBefore = List(['x']).setSize(9);
       const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 2 };
       const nextState = brick(stateBefore, action);
-      console.log(nextState);
 
       expect(nextState).to.include('o');
       expect(nextState.get(4)).to.equal('o');
+    });
+
+    it('should pick the winning move if presented with one on level 2', () => {
+      const stateBefore = List(['x', 'x', 'o', 'x', 'o']).setSize(9);
+      const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 2 };
+      const nextState = brick(stateBefore, action);
+
+      expect(nextState.get(6)).to.equal('o');
     });
   });
 });
