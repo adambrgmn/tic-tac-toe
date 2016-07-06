@@ -5,9 +5,9 @@ import { SET_GAME_MODE } from '../../actions/actions.js';
  * It describes the type of game played, either
  * mulitplayer och singleplayer
  *
- * @param  {[type]} state  [description]
- * @param  {[type]} action [description]
- * @return {[type]}        [description]
+ * @param  {String} state  String describing the game mode
+ * @param  {Object} action Action object describing the action
+ * @return {String}        String representing state
  */
 export default function gameMode(state = 'single', action) {
   switch (action.type) {
