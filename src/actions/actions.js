@@ -8,6 +8,8 @@ export const SET_NEXT_PLAYER = 'SET_NEXT_PLAYER';
 export const CHECK_WINNER = 'CHECK_WINNER';
 export const SET_GAME_MODE = 'SET_GAME_MODE';
 export const RESET_GAME = 'RESET_GAME';
+export const NEXT_MENU_STATE = 'NEXT_MENU_STATE';
+export const RESET_MENU = 'RESET_MENU';
 
 /**
  * Other constants
@@ -22,6 +24,13 @@ export const aiLevels = {
 export const gameModes = {
   single: 'single',
   multi: 'mulit',
+};
+
+export const menuStates = {
+  root: 'root',
+  expanded: 'expanded',
+  multi: 'multi',
+  single: 'single',
 };
 
 /**
@@ -54,4 +63,12 @@ export function setGameMode(mode) {
 
 export function resetGame() {
   return { type: RESET_GAME };
+}
+
+export function nextMenuState(next) {
+  return { type: NEXT_MENU_STATE, next };
+}
+
+export function resetMenu() {
+  return { type: RESET_MENU };
 }
