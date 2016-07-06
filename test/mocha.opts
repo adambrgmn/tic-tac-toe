@@ -1,0 +1,4 @@
+test/helpers/browser.js
+src/**/*.spec.js
+--compilers js:babel-register
+--recursive
