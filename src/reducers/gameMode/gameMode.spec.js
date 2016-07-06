@@ -10,5 +10,10 @@ describe('Reducer: gameMode', () => {
       expect(gameMode('single', { type: 'SET_GAME_MODE', mode: 'multi' }))
         .to.equal('multi');
     });
+
+    it('should not accept a wrong mode value', () => {
+      expect(gameMode('single', { type: 'SET_GAME_MODE', mode: 'fancy' }))
+        .to.equal('single');
+    });
   });
 });

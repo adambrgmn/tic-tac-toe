@@ -1,3 +1,5 @@
+import { List } from 'immutable';
+import warning from '../../utils/warning';
 import { CHECK_WINNER } from '../../actions/actions.js';
 
 /**
@@ -52,7 +54,8 @@ export const getWinner = (brick) => {
 
   const freeSpots = brick.filter(s => s);
   if (freeSpots.size === 9) return 'draw';
-  return undefined;
+
+  return null;
 };
 
 /**
@@ -67,8 +70,18 @@ export const getWinner = (brick) => {
  * @return {String}         null, x, o or draw
  */
 export default function winner(state = null, action) {
+  const acceptedBrick = List.isList(action.brick) && action.brick;
+
   switch (action.type) {
     case CHECK_WINNER:
+      if (!acceptedBrick) {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+          /* eslint-disable max-len */
+          warning('Reducer.winner: "action.brick" must be a List.');
+          /* eslint-enable max-len */
+        }
+        return state;
+      }
       return getWinner(action.brick);
 
     default:

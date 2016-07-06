@@ -26,6 +26,15 @@ describe('Reducer: brick', () => {
       expect(brick(stateBefore, action))
         .to.equal(stateAfter);
     });
+
+    it('should not apply changes if player or spot is not defined, or faulty', () => {
+      const stateBefore = initialState.set(5, 'x');
+
+      expect(brick(stateBefore, { type: 'PICK_SPOT_PLAYER', player: 'o' }))
+        .to.equal(stateBefore);
+      expect(brick(stateBefore, { type: 'PICK_SPOT_PLAYER', spot: 10, player: 'o' }))
+        .to.equal(stateBefore);
+    });
   });
 
   describe('case "PICK_SPOT_COMPUTER"', () => {
@@ -60,6 +69,15 @@ describe('Reducer: brick', () => {
       const nextState = brick(stateBefore, action);
 
       expect(nextState.get(6)).to.equal('o');
+    });
+
+    it('should not apply changes if player or level is not defined or faulty', () => {
+      const stateBefore = List(['x', 'x', 'o', 'x', 'o']).setSize(9);
+
+      expect(brick(stateBefore, { type: 'PICK_SPOT_COMPUTER', level: 2 }))
+        .to.equal(stateBefore);
+      expect(brick(stateBefore, { type: 'PICK_SPOT_COMPUTER', level: 2, player: 'y' }))
+        .to.equal(stateBefore);
     });
   });
 });

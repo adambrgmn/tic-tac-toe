@@ -1,4 +1,5 @@
 import { List } from 'immutable';
+import warning from '../../utils/warning';
 import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER } from '../../actions/actions.js';
 
 import pickSpotComputer from './pickSpotComputer';
@@ -21,17 +22,59 @@ import pickSpotComputer from './pickSpotComputer';
  * @return {List}           Returns new state
  */
 export default function brick(state = List().setSize(9), action) {
+  const acceptedPlayer = action.player === 'x' || action.player === 'o';
+  const acceptedSpot = action.spot >= 0 && action.spot <= 9;
+  const acceptedLevel = action.level >= 0 && action.level <= 2;
+
   switch (action.type) {
     case PICK_SPOT_PLAYER:
+      if (!acceptedPlayer) {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+          /* eslint-disable max-len */
+          warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
+          /* eslint-enable max-len */
+        }
+        return state;
+      }
+
+      if (!acceptedSpot) {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+          /* eslint-disable max-len */
+          warning(`Reducer.brick: "action.spot" must an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
+          /* eslint-enable max-len */
+        }
+        return state;
+      }
+
       // Ignore move if the player wants to
       // occupy a already occupied spot
       if (state.get(action.spot)) return state;
 
       // Return state with player occupying the new spot
+      // action must contain player and spot
       return state.set(action.spot, action.player);
 
     case PICK_SPOT_COMPUTER:
+      if (!acceptedPlayer) {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+          /* eslint-disable max-len */
+          warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
+          /* eslint-enable max-len */
+        }
+        return state;
+      }
+
+      if (!acceptedLevel) {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+          /* eslint-disable max-len */
+          warning(`Reducer.brick: "action.level" must an accepted level. \nAccepted levels are 0 to 2 (inclusive)`);
+          /* eslint-enable max-len */
+        }
+        return state;
+      }
+
       // Return state with the computer picking a random spot
+      // action must contain player and level
       return state.set(pickSpotComputer(state, action), action.player);
 
     default:

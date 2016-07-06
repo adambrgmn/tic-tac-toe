@@ -1,5 +1,7 @@
 require('babel-register')();
 
+process.env.NODE_ENV = 'test';
+
 const jsdom = require('jsdom').jsdom;
 const chai = require('chai');
 const chaiImmutable = require('chai-immutable');
