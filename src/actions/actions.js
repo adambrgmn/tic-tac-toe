@@ -7,6 +7,7 @@ export const PICK_SPOT_COMPUTER = 'PICK_SPOT_COMPUTER';
 export const SET_NEXT_PLAYER = 'SET_NEXT_PLAYER';
 export const CHECK_WINNER = 'CHECK_WINNER';
 export const SET_GAME_MODE = 'SET_GAME_MODE';
+export const RESET_GAME = 'RESET_GAME';
 
 /**
  * Other constants
@@ -49,4 +50,8 @@ export function checkWinner(brick) {
 
 export function setGameMode(mode) {
   return { type: SET_GAME_MODE, mode };
+}
+
+export function resetGame() {
+  return { type: RESET_GAME };
 }

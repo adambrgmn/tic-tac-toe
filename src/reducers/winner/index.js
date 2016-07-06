@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import warning from '../../utils/warning';
-import { CHECK_WINNER } from '../../actions/actions.js';
+import { CHECK_WINNER, RESET_GAME } from '../../actions/actions.js';
 
 /**
  * A reducer for winner.
@@ -83,6 +83,9 @@ export default function winner(state = null, action) {
         return state;
       }
       return getWinner(action.brick);
+
+    case RESET_GAME:
+      return null;
 
     default:
       return state;

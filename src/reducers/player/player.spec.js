@@ -12,4 +12,13 @@ describe('Reducer: player', () => {
         .to.equal('x');
     });
   });
+
+  describe('case RESET_GAME', () => {
+    it('should reset player to "x"', () => {
+      expect(player('x', { type: 'RESET_GAME' }))
+        .to.equal('x');
+      expect(player('o', { type: 'RESET_GAME' }))
+        .to.equal('x');
+    });
+  });
 });

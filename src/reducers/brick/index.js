@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import warning from '../../utils/warning';
-import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER } from '../../actions/actions.js';
+import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER, RESET_GAME } from '../../actions/actions.js';
 
 import pickSpotComputer from './pickSpotComputer';
 /**
@@ -76,6 +76,9 @@ export default function brick(state = List().setSize(9), action) {
       // Return state with the computer picking a random spot
       // action must contain player and level
       return state.set(pickSpotComputer(state, action), action.player);
+
+    case RESET_GAME:
+      return List().setSize(9);
 
     default:
       return state;

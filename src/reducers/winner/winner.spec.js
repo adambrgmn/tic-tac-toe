@@ -39,4 +39,12 @@ describe('Reducer: winner', () => {
         .to.equal(null);
     });
   });
+
+  describe('case "RESET_GAME"', () => {
+    it('should reset winner to null', () => {
+      const stateBefore = 'x';
+      expect(winner(stateBefore, { type: 'RESET_GAME' }))
+        .to.equal(null);
+    });
+  });
 });

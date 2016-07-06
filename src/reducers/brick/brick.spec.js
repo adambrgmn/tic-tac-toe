@@ -80,4 +80,17 @@ describe('Reducer: brick', () => {
         .to.equal(stateBefore);
     });
   });
+
+  describe('case RESET_GAME', () => {
+    it('should reset brick to 9 empty fields', () => {
+      const stateBefore = List(['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x']);
+      const stateAfter = List().setSize(9);
+      const action = { type: 'RESET_GAME' };
+
+      const state = brick(stateBefore, action);
+
+      expect(state).to.have.size(9);
+      expect(state).to.equal(stateAfter);
+    });
+  });
 });
