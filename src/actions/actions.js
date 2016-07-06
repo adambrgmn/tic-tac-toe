@@ -6,6 +6,7 @@ export const PICK_SPOT_PLAYER = 'PICK_SPOT_PLAYER';
 export const PICK_SPOT_COMPUTER = 'PICK_SPOT_COMPUTER';
 export const SET_NEXT_PLAYER = 'SET_NEXT_PLAYER';
 export const CHECK_WINNER = 'CHECK_WINNER';
+export const SET_GAME_MODE = 'SET_GAME_MODE';
 
 /**
  * Other constants
@@ -15,6 +16,11 @@ export const aiLevels = {
   zero: 0,
   one: 1,
   two: 2,
+};
+
+export const gameModes = {
+  single: 'single',
+  multi: 'mulit',
 };
 
 /**
@@ -37,6 +43,10 @@ export function setNextPlayer() {
   return { type: SET_NEXT_PLAYER };
 }
 
-export function chechWinner(brick) {
+export function checkWinner(brick) {
   return { type: CHECK_WINNER, brick };
+}
+
+export function setGameMode(mode) {
+  return { type: SET_GAME_MODE, mode };
 }
