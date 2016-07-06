@@ -17,6 +17,38 @@ import getFinalScore from './getFinalScore';
  * @param  {Boolean} isAi   If the current player is AI
  * @return {Number}         The score for that move
  */
+export function getMinimaxVal2(state, player) {
+  const ai = player;
+  const opponent = ai === 'x' ? 'o' : 'x';
+
+  const minimax = (s, p) => {
+    const winner = getWinner(s);
+    const aiMoves = s.filter(spot => spot === ai).size;
+    if (winner) return getFinalScore(winner, ai, aiMoves);
+
+    let stateScore = p === ai ? 1000 : -1000;
+
+    const availableSpots = s.reduce((prev, curr, i) => {
+      if (!curr) return prev.push(i);
+      return prev;
+    }, List());
+
+    const availableNextStates = availableSpots.map(spot => s.set(spot, p));
+
+    availableNextStates.forEach(nextState => {
+      const nextPlayer = p === ai ? opponent : ai;
+      const nextStateScore = minimax(nextState, nextPlayer);
+
+      if (p !== ai && nextStateScore > stateScore) stateScore = nextStateScore;
+      if (p === ai && nextStateScore < stateScore) stateScore = nextStateScore;
+    });
+
+    return stateScore;
+  };
+
+  return minimax(state, player);
+}
+
 export default function getMinimaxVal(state, player, isAi) {
   // Tell whick player is AI
   let ai;
@@ -53,7 +85,6 @@ export default function getMinimaxVal(state, player, isAi) {
     // (or as AI the next time around).
     const nextPlayer = player === 'x' ? 'o' : 'x';
     const nextStateScore = getMinimaxVal(nextState, nextPlayer, !isAi);
-
     if (!isAi) {
       // If the current player is not AI it wants to return
       // a score as low as possible

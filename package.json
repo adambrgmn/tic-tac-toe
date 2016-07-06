@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha",
     "test:watch": "npm test -- --watch",
+    "test:ai": "babel-node test/aiTest.js",
     "start": "webpack-dev-server",
     "build": "webpack"
   },
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/adambrgmn/tic-tac-toe#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
