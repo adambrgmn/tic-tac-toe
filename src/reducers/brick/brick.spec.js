@@ -49,7 +49,6 @@ describe('Reducer: brick', () => {
       const nextState = brick(stateBefore, action);
 
       expect(nextState).to.include('o');
-      expect(nextState.get(4)).to.equal('o');
     });
 
     it('should pick the winning move if presented with one on level 2', () => {

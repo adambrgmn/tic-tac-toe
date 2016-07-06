@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import getMinimaxVal from './getMinimaxVal';
+import getMasterFreeSpot from './getMasterFreeSpot';
 
 /**
  * getRandomFreeSpot picks a random spot out
@@ -26,30 +26,6 @@ const getRandomFreeSpot = (state) => {
   // Return a random index of a free spot
   return freeSpots.get(randomNum);
 };
-
-
-const getMasterFreeSpot = (state, player) => {
-  const availableSpots = state.reduce((prev, curr, i) => {
-    if (!curr) return prev.push(i);
-    return prev;
-  }, List());
-
-  const availableActions = availableSpots.map(spot => {
-    const nextState = state.set(spot, player);
-    const minimaxVal = getMinimaxVal(nextState, player);
-
-    return List([spot, minimaxVal]);
-  });
-
-  const sortedActions = availableActions.sort((prev, curr) => {
-    if (prev.get(1) < curr.get(1)) return -1;
-    if (prev.get(1) > curr.get(1)) return 1;
-    return 0;
-  });
-
-  return sortedActions.getIn([0, 0]);
-};
-
 
 export default function pickSpotComputer(state, action) {
   switch (action.level) {
