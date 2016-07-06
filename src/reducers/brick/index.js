@@ -1,3 +1,7 @@
+import { List } from 'immutable';
+import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER } from '../../actions/actions.js';
+
+import pickSpotComputer from './pickSpotComputer';
 /**
  * A reducer for brick.
  * Brick starts with an immutable List of
@@ -5,9 +9,6 @@
  * be occipied by either a physical player
  * or the computer.
  */
-
-import { List } from 'immutable';
-import pickSpotComputer from './pickSpotComputer';
 
 /**
  * brick determines the state of store-field brick.
@@ -21,7 +22,7 @@ import pickSpotComputer from './pickSpotComputer';
  */
 export default function brick(state = List().setSize(9), action) {
   switch (action.type) {
-    case 'PICK_SPOT_PLAYER':
+    case PICK_SPOT_PLAYER:
       // Ignore move if the player wants to
       // occupy a already occupied spot
       if (state.get(action.spot)) return state;
@@ -29,7 +30,7 @@ export default function brick(state = List().setSize(9), action) {
       // Return state with player occupying the new spot
       return state.set(action.spot, action.player);
 
-    case 'PICK_SPOT_COMPUTER':
+    case PICK_SPOT_COMPUTER:
       // Return state with the computer picking a random spot
       return state.set(pickSpotComputer(state, action), action.player);
 

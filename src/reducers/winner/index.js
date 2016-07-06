@@ -1,3 +1,5 @@
+import { CHECK_WINNER } from '../../actions/actions.js';
+
 /**
  * A reducer for winner.
  * It's undefined until either x or o has a
@@ -62,11 +64,11 @@ export const getWinner = (brick) => {
  *
  * @param  {String} state   The previous state
  * @param  {Object} action  Object of action
- * @return {String}         Undefined, x, o or draw
+ * @return {String}         null, x, o or draw
  */
-export default function winner(state = undefined, action) {
+export default function winner(state = null, action) {
   switch (action.type) {
-    case 'CHECK_WINNER':
+    case CHECK_WINNER:
       return getWinner(action.brick);
 
     default:
