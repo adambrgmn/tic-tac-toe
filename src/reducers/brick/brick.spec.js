@@ -36,19 +36,22 @@ describe('Reducer: brick', () => {
         .to.include('o');
     });
 
-    // it('should return a semi-randomly picked spot on level 1', () => {
-    //   const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 1 };
+    it('should return a semi-randomly picked spot on level 1', () => {
+      const stateBefore = List(['x']).setSize(9);
+      const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 1 };
 
-    //   expect(brick(undefined, action))
-    //     .to.include('o');
-    // });
+      expect(brick(stateBefore, action))
+        .to.include('o');
+    });
 
     it('should pick the optimal spot on level 2', () => {
-      const stateBefore = List(['x']).setSize(9);
+      const stateBefore = List(
+        ['x', 'o', 'x', undefined, 'o', undefined, 'o', 'x', 'x']
+      ).setSize(9);
       const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 2 };
       const nextState = brick(stateBefore, action);
 
-      expect(nextState).to.include('o');
+      expect(nextState.get(4)).to.equal('o');
     });
 
     it('should pick the winning move if presented with one on level 2', () => {

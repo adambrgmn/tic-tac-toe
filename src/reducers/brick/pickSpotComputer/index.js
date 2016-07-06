@@ -1,38 +1,16 @@
-import { List } from 'immutable';
-import getMasterFreeSpot from './getMasterFreeSpot';
-
-/**
- * getRandomFreeSpot picks a random spot out
- * of all free spots for the computer.
- * This will be replaced by another function
- * that determines the best move for the
- * computer, so that it will be unbeatable.
- *
- * @param  {List}   state  A List of all spots
- * @return {Number}        A random index
- */
-const getRandomFreeSpot = (state) => {
-  // Reduce state to only contain
-  // indecies of free spots.
-  const freeSpots = state.reduce((prev, curr, i) => {
-    if (!curr) return prev.concat(i);
-    return prev;
-  }, List());
-
-  // Get a random number from 0 to
-  // the last index in the List.
-  const randomNum = Math.floor(Math.random() * freeSpots.size);
-
-  // Return a random index of a free spot
-  return freeSpots.get(randomNum);
-};
+import getLevel0Spot from './getLevel0Spot';
+import getLevel2Spot from './getLevel2Spot';
 
 export default function pickSpotComputer(state, action) {
   switch (action.level) {
     case 0:
-      return getRandomFreeSpot(state);
+      return getLevel0Spot(state);
+    case 1:
+      const randomNum = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+      if (randomNum < 5) return getLevel0Spot(state);
+      return getLevel2Spot(state, action.player);
     case 2:
-      return getMasterFreeSpot(state, action.player);
+      return getLevel2Spot(state, action.player);
     default:
       return state;
   }
