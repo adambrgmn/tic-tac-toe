@@ -1,6 +1,6 @@
-import { List } from 'immutable';
 import getWinner from './getWinner';
 import getFinalScore from './getFinalScore';
+import getFreeSpots from './getFreeSpots';
 
 /**
  * getMinimaxVal tests all possible outcomes
@@ -17,84 +17,52 @@ import getFinalScore from './getFinalScore';
  * @param  {Boolean} isAi   If the current player is AI
  * @return {Number}         The score for that move
  */
-export function getMinimaxVal2(state, player) {
+export default function getMinimaxVal(state, player) {
+  // Determine wich player is AI
+  // and wich is the opponent
   const ai = player;
-  const opponent = ai === 'x' ? 'o' : 'x';
+  const op = ai === 'x' ? 'o' : 'x';
 
-  const minimax = (s, p) => {
+  // Return a named IIFE that also gets
+  // called recursively inside itself.
+  return (function minimax(s, p) {
+    // Determine if the current state is an
+    // ending state and if there is a winner
     const winner = getWinner(s);
-    const aiMoves = s.filter(spot => spot === ai).size;
-    if (winner) return getFinalScore(winner, ai, aiMoves);
+    if (winner) {
+      const aiMoves = s.filter(spot => spot === ai).size;
+      return getFinalScore(winner, ai, aiMoves);
+    }
 
-    let stateScore = p === ai ? 1000 : -1000;
+    // Check if current player is ai
+    const playingAsAi = p === ai;
 
-    const availableSpots = s.reduce((prev, curr, i) => {
-      if (!curr) return prev.push(i);
-      return prev;
-    }, List());
+    // Set a base score to test against later
+    // relative to if the player is ai or not.
+    let stateScore = playingAsAi ? 1000 : -1000;
 
-    const availableNextStates = availableSpots.map(spot => s.set(spot, p));
+    // Get all available free spots to test against later
+    const availableSpots = getFreeSpots(s);
 
-    availableNextStates.forEach(nextState => {
-      const nextPlayer = p === ai ? opponent : ai;
+    // Determine the minimax score of each available spot
+    availableSpots.forEach(spot => {
+      // Get next state with available spots applied
+      const nextState = s.set(spot, p);
+
+      // Set the next player
+      const nextPlayer = p === ai ? op : ai;
+
+      // Call minimax recursively to get
+      // the score of every possible state
       const nextStateScore = minimax(nextState, nextPlayer);
 
-      if (p !== ai && nextStateScore > stateScore) stateScore = nextStateScore;
-      if (p === ai && nextStateScore < stateScore) stateScore = nextStateScore;
+      // The opponent wants to maximize
+      if (!playingAsAi && nextStateScore > stateScore) stateScore = nextStateScore;
+      // The AI wants to minimize
+      if (playingAsAi && nextStateScore < stateScore) stateScore = nextStateScore;
     });
 
+    // Finally return the score of the current state
     return stateScore;
-  };
-
-  return minimax(state, player);
-}
-
-export default function getMinimaxVal(state, player, isAi) {
-  // Tell whick player is AI
-  let ai;
-  if (isAi) ai = player;
-  if (!isAi) ai = player === 'x' ? 'o' : 'x';
-
-  // Set a root score. If the current player is AI
-  // set a score higher then any outcome. It not
-  // set a score lower than any outcome.
-  let stateScore = isAi ? 1000 : -1000;
-
-  // Determine if the current state has a winner
-  // If so, return the score of this state
-  const winner = getWinner(state);
-  const aiMoves = state.filter(p => p === ai).size;
-  if (winner) return getFinalScore(winner, ai, aiMoves);
-
-  // If a winner can't be determined, go on an test all other possible outcomes
-  // First get a List of indeces of possible moves
-  const availableSpots = state.reduce((prev, curr, i) => {
-    // If the spot is empty, undefined, push it to the new List
-    if (!curr) return prev.push(i);
-    return prev;
-  }, List());
-
-  // Create a List of all possible moves
-  const availableNextStates = availableSpots.map((spot) => state.set(spot, player));
-
-  // Iterate over all possible states and determine their scores
-  // And if the score is in favor of the ai, apply it to stateScore
-  availableNextStates.forEach((nextState) => {
-    // Get the score of the next state by calling getMinimaxVal
-    // recursively and with the next player not as AI
-    // (or as AI the next time around).
-    const nextPlayer = player === 'x' ? 'o' : 'x';
-    const nextStateScore = getMinimaxVal(nextState, nextPlayer, !isAi);
-    if (!isAi) {
-      // If the current player is not AI it wants to return
-      // a score as low as possible
-      if (nextStateScore > stateScore) stateScore = nextStateScore;
-    } else {
-      // If the current player is AI it wants to return
-      // a score as high as possible
-      if (nextStateScore < stateScore) stateScore = nextStateScore;
-    }
-  });
-
-  return stateScore;
+  }(state, op)); // It's important to call minimax with the opponent the first time
 }

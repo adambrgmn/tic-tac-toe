@@ -60,7 +60,7 @@ describe('Reducer: brick', () => {
       const action = { type: 'PICK_SPOT_COMPUTER', player: 'o', level: 2 };
       const nextState = brick(stateBefore, action);
 
-      expect(nextState.get(4)).to.equal('o');
+      expect(nextState.get(5)).to.equal('o');
     });
 
     it('should pick the winning move if presented with one on level 2', () => {
