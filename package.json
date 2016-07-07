@@ -49,6 +49,7 @@
     "md5": "^2.1.0",
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
+    "optimist": "^0.6.1",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "^15.2.0",
     "sass-loader": "^4.0.0",
