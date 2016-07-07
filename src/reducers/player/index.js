@@ -1,12 +1,13 @@
-import { SET_NEXT_PLAYER, RESET_GAME } from '../../actions/actions.js';
+import { SET_NEXT_PLAYER, RESET_GAME } from '../../constants/actionTypes';
+import { players } from '../../constants';
 
-export default function player(state = 'x', action) {
+export default function player(state = players.x, action) {
   switch (action.type) {
     case SET_NEXT_PLAYER:
-      return state === 'x' ? 'o' : 'x';
+      return state === players.x ? players.o : players.x;
 
     case RESET_GAME:
-      return 'x';
+      return players.x;
 
     default:
       return state;

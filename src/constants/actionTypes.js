@@ -1,0 +1,11 @@
+export const SET_AI_LEVEL = 'SET_AI_LEVEL';
+export const SET_GAME_MODE = 'SET_GAME_MODE';
+export const SET_NEXT_MENU_STATE = 'SET_NEXT_MENU_STATE';
+export const SET_NEXT_PLAYER = 'SET_NEXT_PLAYER';
+export const SET_NEXT_SCREEN = 'SET_NEXT_SCREEN';
+export const RESET_GAME = 'RESET_GAME';
+export const RESET_MENU = 'RESET_MENU';
+export const RESET_SCREEN = 'RESET_SCREEN';
+export const PICK_SPOT_COMPUTER = 'PICK_SPOT_COMPUTER';
+export const PICK_SPOT_PLAYER = 'PICK_SPOT_PLAYER';
+export const CHECK_WINNER = 'CHECK_WINNER';

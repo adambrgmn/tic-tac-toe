@@ -1,5 +1,6 @@
 import warning from '../../utils/warning';
-import { NEXT_MENU_STATE, RESET_MENU, menuStates } from '../../actions/actions';
+import { menuStates } from '../../constants';
+import { SET_NEXT_MENU_STATE, RESET_MENU } from '../../constants/actionTypes';
 
 export default function menu(state = menuStates.root, action) {
   const acceptedState = Object.keys(menuStates).reduce((prev, curr) => {
@@ -8,7 +9,7 @@ export default function menu(state = menuStates.root, action) {
   }, false);
 
   switch (action.type) {
-    case NEXT_MENU_STATE:
+    case SET_NEXT_MENU_STATE:
       if (!acceptedState) {
         /* eslint-disable max-len */
         warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are "root", "expanded", "multi", "single"`);

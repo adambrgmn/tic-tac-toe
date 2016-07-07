@@ -1,5 +1,5 @@
 import warning from '../../utils/warning';
-import { SET_AI_LEVEL } from '../../actions/actions.js';
+import { SET_AI_LEVEL } from '../../constants/actionTypes';
 
 export default function aiLevel(state = 0, action) {
   const acceptedLevel = action.level >= 0 && action.level <= 2 && typeof action.level === 'number';

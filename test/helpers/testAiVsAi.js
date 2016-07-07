@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import brick from '../../src/reducers/brick';
 import winner from '../../src/reducers/winner';
-import { pickSpotComputer, checkWinner } from '../../src/actions/actions';
+import { pickSpotComputer, checkWinner } from '../../src/actions';
 
 const testAiVsAi = (xLevel = 0, oLevel = 0) => {
   let state = List().setSize(9);

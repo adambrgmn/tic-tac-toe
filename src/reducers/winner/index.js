@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import warning from '../../utils/warning';
 import getWinner from '../brick/pickSpotComputer/getLevel2Spot/getMinimaxVal/getWinner';
-import { CHECK_WINNER, RESET_GAME } from '../../actions/actions.js';
+import { CHECK_WINNER, RESET_GAME } from '../../constants/actionTypes';
 
 /**
  * A reducer for winner.
@@ -27,7 +27,7 @@ export default function winner(state = null, action) {
   switch (action.type) {
     case CHECK_WINNER:
       if (!acceptedBrick) {
-        warning('Reducer.winner: "action.brick" must be a List.');
+        warning('Reducer.winner: "action.brick" must be an immutable List.');
         return state;
       }
       return getWinner(action.brick);

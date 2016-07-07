@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import warning from '../../utils/warning';
-import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER, RESET_GAME } from '../../actions/actions.js';
+import { PICK_SPOT_PLAYER, PICK_SPOT_COMPUTER, RESET_GAME } from '../../constants/actionTypes';
 
 import pickSpotComputer from './pickSpotComputer';
 /**

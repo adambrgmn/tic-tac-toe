@@ -1,9 +1,6 @@
 import warning from '../../utils/warning';
-import {
-  SET_NEXT_SCREEN,
-  RESET_SCREEN,
-  screens,
-} from '../../actions/actions.js';
+import { screens } from '../../constants';
+import { SET_NEXT_SCREEN, RESET_SCREEN } from '../../constants/actionTypes';
 
 export default function showScreen(state = screens.menu, action) {
   const acceptedScreens = Object.keys(screens);

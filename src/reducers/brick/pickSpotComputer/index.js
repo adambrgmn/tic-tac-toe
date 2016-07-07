@@ -1,7 +1,7 @@
 import getLevel0Spot from './getLevel0Spot';
 import getLevel2Spot from './getLevel2Spot';
 
-import { aiLevels } from '../../../actions/actions.js';
+import { aiLevels } from '../../../constants';
 
 export default function pickSpotComputer(state, action) {
   switch (action.level) {

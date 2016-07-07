@@ -1,5 +1,6 @@
 import warning from '../../utils/warning';
-import { SET_GAME_MODE, gameModes } from '../../actions/actions.js';
+import { gameModes } from '../../constants';
+import { SET_GAME_MODE } from '../../constants/actionTypes';
 
 /**
  * gameMode defines the state property gameMode
