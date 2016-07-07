@@ -10,6 +10,8 @@ export const SET_GAME_MODE = 'SET_GAME_MODE';
 export const RESET_GAME = 'RESET_GAME';
 export const NEXT_MENU_STATE = 'NEXT_MENU_STATE';
 export const RESET_MENU = 'RESET_MENU';
+export const SET_NEXT_SCREEN = 'SET_NEXT_SCREEN';
+export const RESET_SCREEN = 'RESET_SCREEN';
 
 /**
  * Other constants
@@ -30,6 +32,12 @@ export const menuStates = {
   expanded: 'expanded',
   multi: 'multi',
   single: 'single',
+};
+
+export const screens = {
+  menu: 'menu',
+  game: 'game',
+  settings: 'settings',
 };
 
 /**
@@ -69,4 +77,12 @@ export function nextMenuState(next) {
 
 export function resetMenu() {
   return { type: RESET_MENU };
+}
+
+export function setNextScreen(screen) {
+  return { type: SET_NEXT_SCREEN, screen };
+}
+
+export function resetScreen() {
+  return { type: RESET_SCREEN };
 }
