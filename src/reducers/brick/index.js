@@ -40,7 +40,7 @@ export default function brick(state = List().setSize(9), action) {
       if (!acceptedSpot) {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
           /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.spot" must an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
+          warning(`Reducer.brick: "action.spot" must be an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
           /* eslint-enable max-len */
         }
         return state;
@@ -58,7 +58,7 @@ export default function brick(state = List().setSize(9), action) {
       if (!acceptedPlayer) {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
           /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
+          warning(`Reducer.brick: "action.player" must be an accepted player. \nAccepted players are "x" or "o"`);
           /* eslint-enable max-len */
         }
         return state;
@@ -67,7 +67,7 @@ export default function brick(state = List().setSize(9), action) {
       if (!acceptedLevel) {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
           /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.level" must an accepted level. \nAccepted levels are 0 to 2 (inclusive)`);
+          warning(`Reducer.brick: "action.level" must be an accepted level. \nAccepted levels are 0 to 2 (inclusive)`);
           /* eslint-enable max-len */
         }
         return state;
