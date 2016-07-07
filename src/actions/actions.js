@@ -14,7 +14,6 @@ export const RESET_MENU = 'RESET_MENU';
 /**
  * Other constants
  */
-
 export const aiLevels = {
   zero: 0,
   one: 1,
@@ -36,7 +35,6 @@ export const menuStates = {
 /**
  * Action creators
  */
-
 export function setAiLevel(level) {
   return { type: SET_AI_LEVEL, level };
 }
