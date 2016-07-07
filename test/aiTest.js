@@ -1,40 +1,75 @@
 import { List } from 'immutable';
 import brick from '../src/reducers/brick';
 import winner from '../src/reducers/winner';
-import { pickSpotComputer, pickSpotPlayer, checkWinner } from '../src/actions/actions';
+import { pickSpotComputer, checkWinner } from '../src/actions/actions';
+
+const levels = process.argv.slice(2).map(n => Number(n));
 
 /* eslint-disable no-console */
-const logGame = (state) => {
-  console.log(`[${state.get(0) || '-'}][${state.get(1) || '-'}][${state.get(2) || '-'}]`);
-  console.log(`[${state.get(3) || '-'}][${state.get(4) || '-'}][${state.get(5) || '-'}]`);
-  console.log(`[${state.get(6) || '-'}][${state.get(7) || '-'}][${state.get(8) || '-'}]`);
+const logGame = (game, played) => {
   console.log('---------');
+
+  for (let i = 0; i < 9; i = i + 3) {
+    const first = game.state.get(i) || '-';
+    const second = game.state.get(i + 1) || '-';
+    const third = game.state.get(i + 2) || '-';
+    console.log(`[${first}][${second}][${third}]`);
+  }
+
+  console.log(`Winner: ${game.winner}`);
+  console.log(`Rounds: ${game.rounds}`);
+  console.log(`Games played: ${played} out of 100`);
 };
 
-const testAiVsAi = () => {
+const logResult = (result) => {
+  const avgRounds = result.rounds.reduce((prev, curr) => prev + curr, 0) / result.rounds.size;
+  const oWins = result.winners.filter(w => w === 'o').size;
+  const xWins = result.winners.filter(w => w === 'x').size;
+  const draws = result.winners.filter(w => w === 'draw').size;
+
+  console.log('---------');
+  console.log('---------');
+  console.log(`Average rounds: ${avgRounds.toFixed(3)}`);
+  console.log(`o wins: ${oWins}`);
+  console.log(`x wins: ${xWins}`);
+  console.log(`draws: ${draws}`);
+  console.log('---------');
+  console.log('Played with:');
+  console.log(`  x: level ${levels[0] || 0}`);
+  console.log(`  o: level ${levels[1] || 0}`);
+};
+
+const testAiVsAi = (xLevel = 0, oLevel = 0) => {
   let state = List().setSize(9);
   let player = 'x';
-  let game = winner(undefined, checkWinner(state));
-  const level = { x: 2, o: 2 };
+  let rounds = 0;
+  let gameWinner = winner(undefined, checkWinner(state));
+  const level = { x: xLevel, o: oLevel };
 
-  while (game === null) {
+  while (gameWinner === null) {
     state = brick(state, pickSpotComputer(player, level[player]));
     player = player === 'x' ? 'o' : 'x';
-    game = winner(undefined, checkWinner(state));
-    logGame(state);
+    gameWinner = winner(undefined, checkWinner(state));
+    rounds++;
   }
-  // state = brick(state, pickSpotPlayer(1, 'x'));
-  // logGame(state);
-  // state = brick(state, pickSpotComputer('o', 2));
-  // logGame(state);
-  // state = brick(state, pickSpotPlayer(7, 'x'));
-  // logGame(state);
-  // state = brick(state, pickSpotComputer('o', 2));
-  // logGame(state);
 
-  console.log(`Winner: ${winner(undefined, checkWinner(state))}`);
-  console.log(`Played rounds: ${state.filter(s => s).size}`);
+  return { rounds, state, winner: gameWinner };
 };
 
-console.log('The game begins!');
-testAiVsAi();
+const runTest = (x = 100, logProgress = true) => {
+  let rounds = List();
+  let winners = List();
+
+  for (let i = 1; i <= x; i++) {
+    const game = testAiVsAi(...levels);
+    rounds = rounds.push(game.rounds);
+    winners = winners.push(game.winner);
+
+    if (logProgress) logGame(game, i);
+  }
+
+  return { rounds, winners };
+};
+
+const result = runTest();
+logResult(result);
