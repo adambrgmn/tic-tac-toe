@@ -1,7 +1,5 @@
 import { List } from 'immutable';
-import brick from '../src/reducers/brick';
-import winner from '../src/reducers/winner';
-import { pickSpotComputer, checkWinner } from '../src/actions/actions';
+import testAiVsAi from './helpers/testAiVsAi';
 
 const levels = process.argv.slice(2).map(n => Number(n));
 
@@ -37,23 +35,6 @@ const logResult = (result) => {
   console.log('Played with:');
   console.log(`  x: level ${levels[0] || 0}`);
   console.log(`  o: level ${levels[1] || 0}`);
-};
-
-const testAiVsAi = (xLevel = 0, oLevel = 0) => {
-  let state = List().setSize(9);
-  let player = 'x';
-  let rounds = 0;
-  let gameWinner = winner(undefined, checkWinner(state));
-  const level = { x: xLevel, o: oLevel };
-
-  while (gameWinner === null) {
-    state = brick(state, pickSpotComputer(player, level[player]));
-    player = player === 'x' ? 'o' : 'x';
-    gameWinner = winner(undefined, checkWinner(state));
-    rounds++;
-  }
-
-  return { rounds, state, winner: gameWinner };
 };
 
 const runTest = (x = 100, logProgress = true) => {

@@ -2,6 +2,7 @@ import { List } from 'immutable';
 import { expect } from 'chai';
 
 import brick from './index.js';
+import testAiVsAi from '../../../test/helpers/testAiVsAi';
 
 describe('Reducer: brick', () => {
   describe('case "PICK_SPOT_PLAYER"', () => {
@@ -69,6 +70,13 @@ describe('Reducer: brick', () => {
       const nextState = brick(stateBefore, action);
 
       expect(nextState.get(6)).to.equal('o');
+    });
+
+    it.skip('should always end in draw if two master AI\'s meet', function (done) {
+      this.timeout(10000);
+      const result = testAiVsAi(2, 2);
+      expect(result.winner).to.equal('draw');
+      done();
     });
 
     it('should not apply changes if player or level is not defined or faulty', () => {
