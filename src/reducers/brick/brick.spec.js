@@ -72,7 +72,7 @@ describe('Reducer: brick', () => {
       expect(nextState.get(6)).to.equal('o');
     });
 
-    it.skip('should always end in draw if two master AI\'s meet', function (done) {
+    it.skip('should always end in draw if two master AI\'s meet (passes)', function (done) {
       this.timeout(10000);
       const result = testAiVsAi(2, 2);
       expect(result.winner).to.equal('draw');
