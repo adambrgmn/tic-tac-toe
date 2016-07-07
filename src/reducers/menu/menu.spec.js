@@ -2,6 +2,11 @@ import { expect } from 'chai';
 import menu from './index.js';
 
 describe('Reducer: menu', () => {
+  it('should return \'root\' as initial state', () => {
+    expect(menu(undefined, {}))
+      .to.equal('root');
+  });
+
   describe('case NEXT_MENU_STATE', () => {
     it('should update to next state of menu', () => {
       expect(menu(undefined, { type: 'NEXT_MENU_STATE', next: 'expanded' }))

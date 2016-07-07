@@ -5,6 +5,13 @@ import brick from './index.js';
 import testAiVsAi from '../../../test/helpers/testAiVsAi';
 
 describe('Reducer: brick', () => {
+  it('should return a List of 9 empty objects as initial state', () => {
+    expect(brick(undefined, {}))
+      .to.have.size(9);
+    expect(brick(undefined, {}))
+      .to.equal(List().setSize(9));
+  });
+
   describe('case "PICK_SPOT_PLAYER"', () => {
     let initialState;
 

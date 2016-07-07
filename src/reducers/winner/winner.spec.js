@@ -4,6 +4,13 @@ import { List } from 'immutable';
 import winner from './index.js';
 
 describe('Reducer: winner', () => {
+  it('should return null as initial state', () => {
+    /* eslint-disable no-unused-expressions */
+    expect(winner(undefined, {}))
+      .to.be.null;
+    /* eslint-enable no-unused-expressions */
+  });
+
   describe('case "CHECK_WINNER"', () => {
     it('should return a winner, if possible', () => {
       expect(winner(null, { type: 'CHECK_WINNER', brick: List(['x', 'x', 'x']) }))

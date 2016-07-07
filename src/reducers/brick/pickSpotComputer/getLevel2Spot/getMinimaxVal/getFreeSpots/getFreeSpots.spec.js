@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { List } from 'immutable';
 import getFreeSpots from './index.js';
 
-describe('Util: getFreeSpots', () => {
+describe('Function: getFreeSpots', () => {
   it('should return an immutable list of indices of available spots', () => {
     const u = undefined;
 

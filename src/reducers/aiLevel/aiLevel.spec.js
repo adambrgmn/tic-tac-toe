@@ -3,6 +3,11 @@ import { expect } from 'chai';
 import aiLevel from './index.js';
 
 describe('Reducer: aiLevel', () => {
+  it('should return 0 as initial state', () => {
+    expect(aiLevel(undefined, {}))
+      .to.equal(0);
+  });
+
   describe('case SET_AI_LEVEL', () => {
     it('should set ai level', () => {
       expect(aiLevel(0, { type: 'SET_AI_LEVEL', level: 1 }))

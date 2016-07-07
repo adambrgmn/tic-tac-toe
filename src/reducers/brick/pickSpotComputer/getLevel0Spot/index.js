@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+import getFreeSpots from '../getLevel2Spot/getMinimaxVal/getFreeSpots';
 
 /**
  * getLevel0Spot picks a random spot out
@@ -13,10 +13,7 @@ import { List } from 'immutable';
 export default function getLevel0Spot(state) {
   // Reduce state to only contain
   // indecies of free spots.
-  const freeSpots = state.reduce((prev, curr, i) => {
-    if (!curr) return prev.concat(i);
-    return prev;
-  }, List());
+  const freeSpots = getFreeSpots(state);
 
   // Get a random number from 0 to
   // the last index in the List.

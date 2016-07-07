@@ -3,6 +3,11 @@ import { expect } from 'chai';
 import player from './index.js';
 
 describe('Reducer: player', () => {
+  it('should return \'x\' as initial state', () => {
+    expect(player(undefined, {}))
+      .to.equal('x');
+  });
+
   describe('case SET_NEXT_PLAYER', () => {
     it('should return the next player', () => {
       expect(player('x', { type: 'SET_NEXT_PLAYER' }))
