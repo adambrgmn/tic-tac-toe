@@ -19,20 +19,16 @@ export default function gameMode(state = 'single', action) {
   switch (action.type) {
     case SET_GAME_MODE:
       if (!action.mode) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.gameMode: "action.mode" must be defined. \nAccepted modes are "single" or "multi"`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.gameMode: "action.mode" must be defined. \nAccepted modes are "single" or "multi"`);
+        /* eslint-enable max-len */
         return state;
       }
 
       if (!acceptedMode) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.gameMode: "${action.mode}" is not an accepted mode. \nAccepted modes are "single" or "multi"`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.gameMode: "${action.mode}" is not an accepted mode. \nAccepted modes are "single" or "multi"`);
+        /* eslint-enable max-len */
         return state;
       }
 

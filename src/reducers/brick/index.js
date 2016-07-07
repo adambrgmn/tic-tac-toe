@@ -29,20 +29,16 @@ export default function brick(state = List().setSize(9), action) {
   switch (action.type) {
     case PICK_SPOT_PLAYER:
       if (!acceptedPlayer) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
+        /* eslint-enable max-len */
         return state;
       }
 
       if (!acceptedSpot) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.spot" must be an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.brick: "action.spot" must be an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
+        /* eslint-enable max-len */
         return state;
       }
 
@@ -56,20 +52,16 @@ export default function brick(state = List().setSize(9), action) {
 
     case PICK_SPOT_COMPUTER:
       if (!acceptedPlayer) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.player" must be an accepted player. \nAccepted players are "x" or "o"`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.brick: "action.player" must be an accepted player. \nAccepted players are "x" or "o"`);
+        /* eslint-enable max-len */
         return state;
       }
 
       if (!acceptedLevel) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.brick: "action.level" must be an accepted level. \nAccepted levels are 0 to 2 (inclusive)`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.brick: "action.level" must be an accepted level. \nAccepted levels are 0 to 2 (inclusive)`);
+        /* eslint-enable max-len */
         return state;
       }
 

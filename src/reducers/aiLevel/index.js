@@ -14,11 +14,9 @@ export default function aiLevel(state = 0, action) {
       }
 
       if (!acceptedLevel) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.aiLevel: ${action.level} is not accepted. \n The level must be a number between 0 and 2 (inclusive)`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.aiLevel: ${action.level} is not accepted. \n The level must be a number between 0 and 2 (inclusive)`);
+        /* eslint-enable max-len */
         return state;
       }
 

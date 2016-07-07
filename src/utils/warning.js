@@ -6,11 +6,13 @@
  */
 
 export default function warning(message) {
-  /* eslint-disable no-console */
-  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    console.error(message);
+  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+    /* eslint-disable no-console */
+    if (typeof console !== 'undefined' && typeof console.error === 'function') {
+      console.error(message);
+    }
+    /* eslint-enable no-console */
   }
-  /* eslint-enable no-console */
 
   try {
     throw new Error(message);

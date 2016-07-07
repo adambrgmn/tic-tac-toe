@@ -10,11 +10,9 @@ export default function menu(state = menuStates.root, action) {
   switch (action.type) {
     case NEXT_MENU_STATE:
       if (!acceptedState) {
-        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-          /* eslint-disable max-len */
-          warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are "root", "expanded", "multi", "single"`);
-          /* eslint-enable max-len */
-        }
+        /* eslint-disable max-len */
+        warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are "root", "expanded", "multi", "single"`);
+        /* eslint-enable max-len */
         return state;
       }
       return action.next;

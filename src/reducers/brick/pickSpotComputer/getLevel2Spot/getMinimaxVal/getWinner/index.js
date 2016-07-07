@@ -44,5 +44,5 @@ export default function getWinner(brick) {
   const freeSpots = brick.filter(s => s);
   if (freeSpots.size === 9) return 'draw';
 
-  return undefined;
+  return null;
 }
