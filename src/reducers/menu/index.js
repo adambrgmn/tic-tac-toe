@@ -2,6 +2,14 @@ import warning from '../../utils/warning';
 import { menuStates } from '../../constants';
 import { SET_NEXT_MENU_STATE, RESET_MENU } from '../../constants/actionTypes';
 
+/**
+ * menu determines the state of the menu.
+ * It's a string representing the menu state.
+ *
+ * @param  {String} state  A string representing state
+ * @param  {Object} action An action object
+ * @return {String}        A string representing new state
+ */
 export default function menu(state = menuStates.root, action) {
   const acceptedState = Object.keys(menuStates).reduce((prev, curr) => {
     if (action.next === curr) return true;

@@ -11,7 +11,7 @@ import { SET_GAME_MODE } from '../../constants/actionTypes';
  * @param  {Object} action Action object describing the action
  * @return {String}        String representing state
  */
-export default function gameMode(state = 'single', action) {
+export default function gameMode(state = gameModes.single, action) {
   const acceptedMode = Object.keys(gameModes).reduce((prev, curr) => {
     if (action.mode === curr) return true;
     return prev;

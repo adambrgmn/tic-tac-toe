@@ -17,9 +17,9 @@ import { CHECK_WINNER, RESET_GAME } from '../../constants/actionTypes';
  * if all bricks are occupied and no winner can be
  * determined.
  *
- * @param  {String} state   The previous state
- * @param  {Object} action  Object of action
- * @return {String}         null, x, o or draw
+ * @param  {String}      state   The previous state
+ * @param  {Object}      action  Object of action
+ * @return {String/null}         x, o, draw or null (if game not ended)
  */
 export default function winner(state = null, action) {
   const acceptedBrick = List.isList(action.brick) && action.brick;

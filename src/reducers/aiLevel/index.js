@@ -1,8 +1,20 @@
 import warning from '../../utils/warning';
 import { SET_AI_LEVEL } from '../../constants/actionTypes';
+import { aiLevels } from '../../constants';
 
-export default function aiLevel(state = 0, action) {
-  const acceptedLevel = action.level >= 0 && action.level <= 2 && typeof action.level === 'number';
+/**
+ * aiLevel determines the state of store-field aiLevel.
+ * The standard is level aiLevel.zero (0).
+ * It possible to set the level to a new level.
+ *
+ * @param  {Number} state   The level, number between 0 and 2
+ * @param  {Object} action  Action object, must contain type
+ * @return {Number}         Returns new state
+ */
+export default function aiLevel(state = aiLevels.zero, action) {
+  const acceptedLevel = action.level >= aiLevels.zero &&
+    action.level <= aiLevels.two &&
+    typeof action.level === 'number';
 
   switch (action.type) {
     case SET_AI_LEVEL:
