@@ -20,12 +20,11 @@ export const gameModes = {
 export const menuStates = {
   root: 'root',
   expanded: 'expanded',
-  multi: 'multi',
   single: 'single',
+  multi: 'multi',
 };
 
 export const screens = {
   menu: 'menu',
   game: 'game',
-  settings: 'settings',
 };

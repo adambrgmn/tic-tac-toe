@@ -5,6 +5,7 @@ import { SET_NEXT_MENU_STATE, RESET_MENU } from '../../constants/actionTypes';
 /**
  * menu determines the state of the menu.
  * It's a string representing the menu state.
+ * It can be either root, expanded, multi or single.
  *
  * @param  {String} state  A string representing state
  * @param  {Object} action An action object
@@ -12,7 +13,7 @@ import { SET_NEXT_MENU_STATE, RESET_MENU } from '../../constants/actionTypes';
  */
 export default function menu(state = menuStates.root, action) {
   const acceptedState = Object.keys(menuStates).reduce((prev, curr) => {
-    if (action.next === curr) return true;
+    if (menuStates[curr] === action.next) return true;
     return prev;
   }, false);
 
@@ -20,10 +21,12 @@ export default function menu(state = menuStates.root, action) {
     case SET_NEXT_MENU_STATE:
       if (!acceptedState) {
         /* eslint-disable max-len */
-        warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are "root", "expanded", "multi", "single"`);
+        const accepted = Object.keys(menuStates).join(', ');
+        warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are ${accepted}`);
         /* eslint-enable max-len */
         return state;
       }
+
       return action.next;
     case RESET_MENU:
       return menuStates.root;

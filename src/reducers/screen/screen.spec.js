@@ -11,9 +11,6 @@ describe('Reducer: showScreen', () => {
     it('should return the next screen', () => {
       let state = showScreen(undefined, { type: 'SET_NEXT_SCREEN', screen: 'game' });
       expect(state).to.equal('game');
-
-      state = showScreen(state, { type: 'SET_NEXT_SCREEN', screen: 'settings' });
-      expect(state).to.equal('settings');
     });
     it('should not change if the provided screen is faulty', () => {
       expect(showScreen(undefined, { type: 'SET_NEXT_SCREEN', screen: 'foo' }))
