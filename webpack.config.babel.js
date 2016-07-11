@@ -7,7 +7,7 @@ import CleanPlugin from 'clean-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 
 const TARGET = process.env.npm_lifecycle_event;
-process.env.BABE_ENV = TARGET;
+process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
   app: join(__dirname, 'src'),
@@ -37,7 +37,7 @@ const common = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel?cacheDirectory',
+        loaders: ['react-hot', 'babel?cacheDirectory'],
         include: PATHS.app,
       },
       {
