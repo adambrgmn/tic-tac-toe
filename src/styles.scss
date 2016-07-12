@@ -1,1 +1,17 @@
-@import './containers/App/App';
+// Dependencies
+@import '~family.scss';
+
+// Variables
+@import './styles/variables';
+
+// Containers
+@import './containers/App/styles';
+
+// Components
+@import './components/GameBoardSpot/styles';
+@import './components/GameBoardBorder/styles';
+@import './components/GameBoardPlayer/styles';
+
+body {
+  background: $color-red;
+}
