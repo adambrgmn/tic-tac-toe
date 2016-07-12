@@ -25,24 +25,25 @@ export default function App() {
         <div className="game-board-container">
           <svg className="game-board" viewBox="0 0 440 440">
             <g className="game-borders">
-              <rect className="border-hori-1" x="140" y="70" width="10" height="300" />
-              <rect className="border-hori-2" x="290" y="70" width="10" height="300" />
-              <rect className="border-vert-1" x="70" y="140" width="300" height="10" />
-              <rect className="border-vert-2" x="70" y="290" width="300" height="10" />
+              <line className="border border-hori-1" x1="145" y1="70" x2="145" y2="370" />
+              <line className="border border-hori-2" x1="295" y1="70" x2="295" y2="370" />
+              <line className="border border-vert-1" x1="370" y1="295" x2="70" y2="295" />
+              <line className="border border-vert-2" x1="370" y1="145" x2="70" y2="145" />
             </g>
             <g className="game-spots">
-              <rect className="game-spot" x="300" y="300" width="140" height="140" />
-              <rect className="game-spot" x="150" y="300" width="140" height="140" />
-              <rect className="game-spot" y="300" width="140" height="140" />
-              <rect className="game-spot" x="300" y="150" width="140" height="140" />
-              <rect className="game-spot" x="150" y="150" width="140" height="140" />
-              <rect className="game-spot" y="150" width="140" height="140" />
-              <rect className="game-spot" x="300" width="140" height="140" />
-              <rect className="game-spot" x="150" width="140" height="140" />
-              <rect className="game-spot" width="140" height="140" />
+              <rect className="game-spot" x="0" y="0" />
+              <rect className="game-spot" x="150" y="0" />
+              <rect className="game-spot" x="300" y="0" />
+              <rect className="game-spot" x="0" y="150" />
+              <rect className="game-spot" x="150" y="150" />
+              <rect className="game-spot" x="300" y="150" />
+              <rect className="game-spot" x="0" y="300" />
+              <rect className="game-spot" x="150" y="300" />
+              <rect className="game-spot" x="300" y="300" />
             </g>
           </svg>
         </div>
+
         <div className="game-result">
           <p className="paragraph winner">x wins</p>
           <button className="btn btn-rematch">Rematch?</button>
