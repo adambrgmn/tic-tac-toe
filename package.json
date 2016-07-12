@@ -2,13 +2,13 @@
   "name": "tic-tac-toe",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha",
     "test:watch": "npm test -- --watch",
     "test:ai": "babel-node test/aiTest.js",
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "node ./server.js",
+    "build": "cross-env NODE_ENV=production webpack -p --progress"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,14 @@
   },
   "homepage": "https://github.com/adambrgmn/tic-tac-toe#readme",
   "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
     "autoprefixer": "^6.3.7",
+    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
@@ -52,6 +55,7 @@
     "optimist": "^0.6.1",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "^15.2.0",
+    "react-hot-loader": "^1.3.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "stylelint": "^6.8.0",
@@ -61,13 +65,18 @@
     "webpack-merge": "^0.14.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-runtime": "^6.9.2",
     "chai-immutable": "^1.6.0",
     "classnames": "^2.2.5",
-    "family.scss": "^1.0.8",
+    "compression": "^1.6.2",
+    "cross-env": "^1.0.8",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.1.0",
     "immutable": "^3.8.1",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
-    "react-hot-loader": "^1.3.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2"
   }
