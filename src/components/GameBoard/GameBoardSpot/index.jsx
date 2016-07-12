@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import GameBoardPlayer from '../GameBoardPlayer';
 
-export default function GameBoardSpot({ index, player, activePlayer, onSpotClick }) {
+export default function GameBoardSpot({ index, player, activePlayer, level, onSpotClick }) {
   const cxRect = {
     'game-spot-group': true,
     'spot-occupied': player,
@@ -16,7 +16,7 @@ export default function GameBoardSpot({ index, player, activePlayer, onSpotClick
   return (
     <g
       className={classNames(cxRect)}
-      onClick={() => onSpotClick(activePlayer)}
+      onClick={() => onSpotClick(activePlayer, level)}
     >
       <rect className="game-spot" />
       {playerPin}
@@ -28,5 +28,6 @@ GameBoardSpot.propTypes = {
   index: PropTypes.number.isRequired,
   player: PropTypes.string,
   activePlayer: PropTypes.string.isRequired,
+  level: PropTypes.number.isRequired,
   onSpotClick: PropTypes.func,
 };
