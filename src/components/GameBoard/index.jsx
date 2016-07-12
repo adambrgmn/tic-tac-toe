@@ -3,7 +3,7 @@ import { List } from 'immutable';
 
 import GameBoardGroup from './GameBoardGroup';
 import GameBoardBorder from './GameBoardBorder';
-import GameBoardSpot from './GameBoardSpot';
+import GameBoardSpotContainer from '../../containers/GameBoardSpotContainer';
 
 export default function GameBoard({ brick }) {
   const lines = [
@@ -27,7 +27,7 @@ export default function GameBoard({ brick }) {
           </GameBoardGroup>
           <GameBoardGroup>
             {brick.map((spot, i) => (
-              <GameBoardSpot
+              <GameBoardSpotContainer
                 key={i}
                 index={i}
                 player={spot}

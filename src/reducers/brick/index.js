@@ -30,7 +30,7 @@ export default function brick(state = List().setSize(9), action) {
     case PICK_SPOT_PLAYER:
       if (!acceptedPlayer) {
         /* eslint-disable max-len */
-        warning(`Reducer.brick: "action.player" must an accepted player. \nAccepted players are "x" or "o"`);
+        warning(`Reducer.brick: "action.player" (${action.player}) must an accepted player. \nAccepted players are "x" or "o"`);
         /* eslint-enable max-len */
         return state;
       }
