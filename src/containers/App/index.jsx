@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from 'immutable';
 
-import GameContainer from '../GameContainer';
+import GameBoard from '../../components/GameBoard';
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
         </div>
       </div>
 
-      <GameContainer brick={List().setSize(9)} />
+      <GameBoard brick={List().setSize(9)} />
 
       <button className="btn btn-xsmall btn-icon-settings">Show settings</button>
 

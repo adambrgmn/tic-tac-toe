@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 
-import GameBoardGroup from '../../components/GameBoardGroup';
-import GameBoardBorder from '../../components/GameBoardBorder';
-import GameBoardSpot from '../../components/GameBoardSpot';
+import GameBoardGroup from './GameBoardGroup';
+import GameBoardBorder from './GameBoardBorder';
+import GameBoardSpot from './GameBoardSpot';
 
-export default function GameContainer({ brick }) {
+export default function GameBoard({ brick }) {
   const lines = [
     { customClassName: 'vert-1', coordinates: { x1: 145, x2: 145, y1: 70, y2: 370 } },
     { customClassName: 'vert-2', coordinates: { x1: 295, x2: 295, y1: 70, y2: 370 } },
@@ -36,14 +36,10 @@ export default function GameContainer({ brick }) {
           </GameBoardGroup>
         </svg>
       </div>
-      <div className="game-result">
-        <p className="paragraph winner">x wins</p>
-        <button className="btn btn-rematch">Rematch?</button>
-      </div>
     </div>
   );
 }
 
-GameContainer.propTypes = {
+GameBoard.propTypes = {
   brick: PropTypes.instanceOf(List),
 };
