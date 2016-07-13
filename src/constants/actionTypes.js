@@ -1,7 +1,6 @@
 export const CHECK_WINNER = 'CHECK_WINNER';
 export const HIDE_SETTINGS = 'HIDE_SETTINGS';
-export const PICK_SPOT_COMPUTER = 'PICK_SPOT_COMPUTER';
-export const PICK_SPOT_PLAYER = 'PICK_SPOT_PLAYER';
+export const PICK_SPOT = 'PICK_SPOT';
 export const RESET_GAME = 'RESET_GAME';
 export const RESET_MENU = 'RESET_MENU';
 export const RESET_SCREEN = 'RESET_SCREEN';
