@@ -18,6 +18,14 @@
   &:nth-child(9) { transform: translate(300px, 300px); }
 }
 
+.game-ended {
+  cursor: default;
+
+  &:hover {
+    opacity: 0;
+  }
+}
+
 .spot-occupied {
   opacity: 1;
   cursor: default;

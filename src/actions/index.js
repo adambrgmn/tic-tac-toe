@@ -4,7 +4,7 @@ import * as types from '../constants/actionTypes';
  * Action creators
  */
 /* eslint-disable max-len */
-export const checkWinner = (brick) => ({ type: types.CHECK_WINNER, brick });
+export const checkWinner = () => ({ type: types.CHECK_WINNER });
 export const hideSettings = () => ({ type: types.HIDE_SETTINGS });
 export const resetGame = () => ({ type: types.RESET_GAME });
 export const resetMenu = () => ({ type: types.RESET_MENU });
