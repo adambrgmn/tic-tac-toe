@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 
+import GameBoardGroup from '../GameBoardGroup';
 import GameBoardPlayer from '../GameBoardPlayer';
 
 export function GameBoardSpot({ index, player, activePlayer }) {
@@ -15,10 +16,10 @@ export function GameBoardSpot({ index, player, activePlayer }) {
     <GameBoardPlayer player={activePlayer} />;
 
   return (
-    <g className={classNames(cxRect)}>
+    <GameBoardGroup customClassName={classNames(cxRect)}>
       <rect className="game-spot" />
       {playerPin}
-    </g>
+    </GameBoardGroup>
   );
 }
 
