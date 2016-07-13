@@ -38,7 +38,7 @@ export default function brick(state = List().setSize(9), action) {
 
       if (!acceptedSpot) {
         /* eslint-disable max-len */
-        warning(`Reducer.brick: "action.spot" must be an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
+        warning(`Reducer.brick: "action.spot" (${action.spot}) must be an accepted spot. \nAccepted spots are 0 to 9 (inclusive)`);
         /* eslint-enable max-len */
         return state;
       }

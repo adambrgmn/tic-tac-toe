@@ -1,4 +1,4 @@
-import getWinner from './getWinner';
+import getWinner from '../../../getWinner';
 import getFinalScore from './getFinalScore';
 import getFreeSpots from '../../../../utils/getFreeSpots';
 
