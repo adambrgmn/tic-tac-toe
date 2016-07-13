@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 
 import GameBoardPlayer from '../GameBoardPlayer';
 
-export default function GameBoardSpot({ index, player, activePlayer, level, onSpotClick }) {
+export function GameBoardSpot({ index, player, activePlayer }) {
   const cxRect = {
     'game-spot-group': true,
     'spot-occupied': player,
@@ -14,10 +15,7 @@ export default function GameBoardSpot({ index, player, activePlayer, level, onSp
     <GameBoardPlayer player={activePlayer} />;
 
   return (
-    <g
-      className={classNames(cxRect)}
-      onClick={() => onSpotClick(activePlayer, level)}
-    >
+    <g className={classNames(cxRect)}>
       <rect className="game-spot" />
       {playerPin}
     </g>
@@ -28,6 +26,11 @@ GameBoardSpot.propTypes = {
   index: PropTypes.number.isRequired,
   player: PropTypes.string,
   activePlayer: PropTypes.string.isRequired,
-  level: PropTypes.number.isRequired,
-  onSpotClick: PropTypes.func,
 };
+
+
+const mapStateToProps = (state) => ({
+  activePlayer: state.player,
+});
+
+export default connect(mapStateToProps)(GameBoardSpot);

@@ -2,14 +2,5 @@
 @import './styles/family';
 @import './styles/variables';
 
-// Containers
-@import './containers/App/styles';
-
-// Components
-@import './components/GameBoard/GameBoardSpot/styles';
-@import './components/GameBoard/GameBoardBorder/styles';
-@import './components/GameBoard/GameBoardPlayer/styles';
-
-body {
-  background: $color-red;
-}
+// Scenes
+@import './scenes/Home/styles';
