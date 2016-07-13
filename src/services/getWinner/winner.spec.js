@@ -1,5 +1,7 @@
 import { expect } from 'chai';
 import { List } from 'immutable';
+
+import store from '../../store';
 import getWinner from './index';
 
 describe('Function: getWinner', () => {
@@ -18,5 +20,13 @@ describe('Function: getWinner', () => {
     /* eslint-disable no-unused-expressions */
     expect(getWinner(brick)).to.be.null;
     /* eslint-enable no-unused-expressions */
+  });
+
+  it('should check for brick in store if none is provided', () => {
+    store.dispatch({ type: 'PICK_SPOT', spot: 0, player: 'x' });
+    store.dispatch({ type: 'PICK_SPOT', spot: 1, player: 'x' });
+    store.dispatch({ type: 'PICK_SPOT', spot: 2, player: 'x' });
+
+    expect(getWinner()).to.equal('x');
   });
 });

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { List } from 'immutable';
 
+import store from '../../store';
 import winner from './index.js';
 
 describe('Reducer: winner', () => {
@@ -39,11 +40,18 @@ describe('Reducer: winner', () => {
         .to.equal(null);
     });
 
-    it('should not apply changes if brick is undefined or faulty', () => {
-      expect(winner(null, { type: 'CHECK_WINNER' }))
-        .to.equal(null);
+    it('should not apply changes if brick is faulty', () => {
       expect(winner(null, { type: 'CHECK_WINNER', brick: ['x', 'o'] }))
         .to.equal(null);
+    });
+
+    it('should go to store and check if no brick is provided', () => {
+      store.dispatch({ type: 'PICK_SPOT', spot: 0, player: 'x' });
+      store.dispatch({ type: 'PICK_SPOT', spot: 1, player: 'x' });
+      store.dispatch({ type: 'PICK_SPOT', spot: 2, player: 'x' });
+
+      expect(winner(undefined, { type: 'CHECK_WINNER' }))
+        .to.equal('x');
     });
   });
 
