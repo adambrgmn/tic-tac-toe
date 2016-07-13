@@ -1,3 +1,6 @@
+// THIS WILL NO LONGER WORK SINCE
+// AI LOGIC BEEN MOVED, I WILL SOON
+// UPDATE IT
 import { List } from 'immutable';
 import brick from '../../src/reducers/brick';
 import winner from '../../src/reducers/winner';
