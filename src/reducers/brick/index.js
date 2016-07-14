@@ -6,14 +6,6 @@ import {
 } from '../../constants/actionTypes';
 
 /**
- * A reducer for brick.
- * Brick starts with an immutable List of
- * 9 undefined bricks. These bricks can then
- * be occipied by either a physical player
- * or the computer.
- */
-
-/**
  * brick determines the state of store-field brick.
  * It starts with an immutable List of 9 undefined
  * spots. The actions puts a player (x or o) on

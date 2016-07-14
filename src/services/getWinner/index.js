@@ -6,50 +6,46 @@ import store from '../../store';
  * it returns draw. If no condition matches
  * it will return null.
  *
- * @param  {List}        brick  An immutable List of spots
- * @return {String|null}        The winner (x or o), draw or null
+ * @param  {List} [brick] An immutable List of spots, if
+ * none is provided it will get the brick from the store
+ *
+ * @return {String|null} The winner (x or o), draw or null
  */
-export default function getWinner(brick) {
-  let state;
-  if (brick) state = brick;
-  if (!brick) {
-    state = store.getState().brick;
-  }
-
+export default function getWinner(brick = store.getState().brick) {
   // Check rows
   for (let i = 0; i <= 6; i = i + 3) {
     if (
-      state.get(i) &&
-      state.get(i) === state.get(i + 1) &&
-      state.get(i) === state.get(i + 2)
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + 1) &&
+      brick.get(i) === brick.get(i + 2)
     ) {
-      return state.get(i);
+      return brick.get(i);
     }
   }
 
   // Check columns
   for (let i = 0; i <= 2; i++) {
     if (
-      state.get(i) &&
-      state.get(i) === state.get(i + 3) &&
-      state.get(i + 3) === state.get(i + 6)
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + 3) &&
+      brick.get(i + 3) === brick.get(i + 6)
     ) {
-      return state.get(i);
+      return brick.get(i);
     }
   }
 
   // Check diagonals
   for (let i = 0, j = 4; i <= 2; i = i + 2, j = j - 2) {
     if (
-      state.get(i) &&
-      state.get(i) === state.get(i + j) &&
-      state.get(i + j) === state.get(i + 2 * j)
+      brick.get(i) &&
+      brick.get(i) === brick.get(i + j) &&
+      brick.get(i + j) === brick.get(i + 2 * j)
     ) {
-      return state.get(i);
+      return brick.get(i);
     }
   }
 
-  const nonFreeSpots = state.filter(s => s);
+  const nonFreeSpots = brick.filter(s => s);
   if (nonFreeSpots.size === 9) return 'draw';
 
   return null;

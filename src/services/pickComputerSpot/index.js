@@ -4,6 +4,12 @@ import pickLevel0Spot from './pickLevel0Spot';
 import pickLevel1Spot from './pickLevel1Spot';
 import pickLevel2Spot from './pickLevel2Spot';
 
+/**
+ * Let the computer pick a spot, depending on the
+ * aiLevel set in store
+ *
+ * @return {Promise} A promise with the selected spot
+ */
 export default function pickComputerSpot() {
   const { aiLevel, player, brick } = store.getState();
 

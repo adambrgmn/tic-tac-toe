@@ -3,12 +3,12 @@ import getFreeSpots from '../../../utils/getFreeSpots';
 /**
  * getLevel0Spot picks a random spot out
  * of all free spots for the computer.
- * This will be replaced by another function
- * that determines the best move for the
- * computer, so that it will be unbeatable.
  *
- * @param  {List}   brick  A List of all spots
- * @return {Number}        A random index
+ * @param  {List} brick A List of all spots on the brick,
+ * even those that are undefined
+ *
+ * @return {Promise} A Promise with a random spot out of
+ * those still undefined as its resolve value
  */
 export default function pickLevel0Spot(brick) {
   return new Promise((resolve) => {

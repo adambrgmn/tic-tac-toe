@@ -4,13 +4,6 @@ import { CHECK_WINNER, RESET_GAME } from '../../constants/actionTypes';
 import getWinner from '../../services/getWinner';
 
 /**
- * A reducer for winner.
- * It's undefined until either x or o has a
- * winning move, or the brick is full without
- * a winner, in that case it ends with draw.
- */
-
-/**
  * winner determines the state of store-field winner
  * It's undefines as long as there are no winner.
  * It returns the winner if it can find one, or draw

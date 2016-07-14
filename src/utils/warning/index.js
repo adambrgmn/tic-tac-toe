@@ -1,7 +1,8 @@
 /**
- * Prints a warning in the console if it exists.
+ * Prints a warning in the console if it exists and if
+ * the environment is equal to production.
  *
- * @param {String} message The warning message.
+ * @param {String} message The warning message to be printed.
  * @returns {void}
  */
 
