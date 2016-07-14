@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Menu() {
-  return null;
+  return <p>This is a menu</p>;
 }
