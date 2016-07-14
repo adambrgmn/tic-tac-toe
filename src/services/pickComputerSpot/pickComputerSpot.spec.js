@@ -4,7 +4,7 @@ import pickComputerSpot from './index';
 import store from '../../store';
 
 describe('Service: pickComputerSpot', () => {
-  it('should pick a random spot on aiLevel 0', function level0() {
+  it.skip('should pick a random spot on aiLevel 0', function level0() {
     this.timeout(10000);
     store.dispatch({ type: 'SET_AI_LEVEL', level: 0 });
 
@@ -13,7 +13,7 @@ describe('Service: pickComputerSpot', () => {
     });
   });
 
-  it('should pick a semi random spot on aiLevel 1', function level1() {
+  it.skip('should pick a semi random spot on aiLevel 1', function level1() {
     this.timeout(10000);
     store.dispatch({ type: 'SET_AI_LEVEL', level: 1 });
 

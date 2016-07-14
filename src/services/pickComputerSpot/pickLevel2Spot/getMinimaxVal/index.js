@@ -14,7 +14,6 @@ import getFreeSpots from '../../../../utils/getFreeSpots';
  *
  * @param  {List}    state  A List of all bricks
  * @param  {String}  player The current player
- * @param  {Boolean} isAi   If the current player is AI
  * @return {Number}         The score for that move
  */
 export default function getMinimaxVal(state, player) {

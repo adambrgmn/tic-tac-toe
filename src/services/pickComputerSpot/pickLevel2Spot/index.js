@@ -4,12 +4,12 @@ import getMinimaxVal from './getMinimaxVal';
 import getFreeSpots from '../../../utils/getFreeSpots';
 
 export default function pickLevel2Spot(state, ai) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const availableSpots = getFreeSpots(state);
 
-    const availableNextStateScores = availableSpots.map((spot) => {
+    const availableNextStateScores = availableSpots.map(spot => {
       const nextState = state.set(spot, ai);
-      const stateScore = getMinimaxVal(nextState, ai, true);
+      const stateScore = getMinimaxVal(nextState, ai);
 
       return List([spot, stateScore]);
     });

@@ -11,13 +11,16 @@ export default function pickComputerSpot() {
     switch (aiLevel) {
       case 0:
         return pickLevel0Spot(brick)
-          .then(index => resolve({ player, index }), err => reject(err));
+          .then(index => resolve({ player, index }))
+          .catch(err => reject(err));
       case 1:
         return pickLevel1Spot(brick, player)
-          .then(index => resolve({ player, index }), err => reject(err));
+          .then(index => resolve({ player, index }))
+          .catch(err => reject(err));
       case 2:
         return pickLevel2Spot(brick, player)
-          .then(index => resolve({ player, index }), err => reject(err));
+          .then(index => resolve({ player, index }))
+          .catch(err => reject(err));
 
       default:
         return reject('Error: Could not pick computer spot');
