@@ -7,4 +7,10 @@
   top: 12.5vw;
   left: 25vw;
   width: 50vw;
+
+  @include fadeIn($delay: 1s);
+}
+
+.screen-transition-leave .game-board {
+  @include fadeOut();
 }
