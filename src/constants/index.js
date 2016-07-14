@@ -28,3 +28,10 @@ export const screens = {
   menu: 'menu',
   game: 'game',
 };
+
+export const winnerStates = {
+  x: 'x',
+  o: 'o',
+  draw: 'draw',
+  null: null,
+};

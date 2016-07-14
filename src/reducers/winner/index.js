@@ -1,7 +1,6 @@
-import { List } from 'immutable';
 import warning from '../../utils/warning';
-import { CHECK_WINNER, RESET_GAME } from '../../constants/actionTypes';
-import getWinner from '../../services/getWinner';
+import { GAME_ENDED, RESET_GAME } from '../../constants/actionTypes';
+import { winnerStates } from '../../constants';
 
 /**
  * winner determines the state of store-field winner
@@ -15,15 +14,20 @@ import getWinner from '../../services/getWinner';
  * @return {String/null}         x, o, draw or null (if game not ended)
  */
 export default function winner(state = null, action) {
-  const acceptedBrick = List.isList(action.brick) && action.brick;
+  const acceptedWinnerState = Object.keys(winnerStates).reduce((prev, curr) => {
+    if (curr === action.winner) return true;
+    return prev;
+  }, false);
 
   switch (action.type) {
-    case CHECK_WINNER:
-      if (action.brick && !acceptedBrick) {
-        warning('Reducer.winner: "action.brick" must be an immutable List.');
+    case GAME_ENDED:
+      if (!acceptedWinnerState) {
+        /* eslint-disable max-len */
+        warning(`Reducer.winner: "action.winner" (${action.winner}) is not accepted.\n Accepted values are ${Object.keys(winnerStates).join(', ')}.`);
         return state;
       }
-      return getWinner(action.brick);
+
+      return action.winner;
 
     case RESET_GAME:
       return null;

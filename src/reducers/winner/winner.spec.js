@@ -1,7 +1,4 @@
 import { expect } from 'chai';
-import { List } from 'immutable';
-
-import store from '../../store';
 import winner from './index.js';
 
 describe('Reducer: winner', () => {
@@ -12,46 +9,21 @@ describe('Reducer: winner', () => {
     /* eslint-enable no-unused-expressions */
   });
 
-  describe('case "CHECK_WINNER"', () => {
-    it('should return a winner, if possible', () => {
-      expect(winner(null, { type: 'CHECK_WINNER', brick: List(['x', 'x', 'x']) }))
+  describe('case GAME_ENDED', () => {
+    it('should set the new winner as state', () => {
+      expect(winner(undefined, { type: 'GAME_ENDED', winner: 'x' }))
         .to.equal('x');
 
-      expect(winner(null, {
-        type: 'CHECK_WINNER',
-        brick: List(['x', 'o', 'o', 'x', 'o', 'x', 'o', 'x', 'x']),
-      })).to.equal('o');
-
-      expect(winner(null, {
-        type: 'CHECK_WINNER',
-        brick: List(['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x']),
-      })).to.equal('x');
+      expect(winner(null, { type: 'GAME_ENDED', winner: 'draw' }))
+        .to.equal('draw');
     });
 
-    it('should return "draw" if the game ends in draw', () => {
-      expect(winner(null, {
-        type: 'CHECK_WINNER',
-        brick: List(['x', 'x', 'o', 'o', 'o', 'x', 'x', 'o', 'x']),
-      })).to.equal('draw');
-    });
-
-    it('should return null if there are no winners', () => {
-      expect(winner(null, { type: 'CHECK_WINNER', brick: List(['x', 'x', 'o']) }))
+    it('should just return state if winner is not provided or faulty', () => {
+      expect(winner(null, { type: 'GAME_ENDED', winner: 'foo' }))
         .to.equal(null);
-    });
 
-    it('should not apply changes if brick is faulty', () => {
-      expect(winner(null, { type: 'CHECK_WINNER', brick: ['x', 'o'] }))
+      expect(winner(null, { type: 'GAME_ENDED' }))
         .to.equal(null);
-    });
-
-    it('should go to store and check if no brick is provided', () => {
-      store.dispatch({ type: 'PICK_SPOT', spot: 0, player: 'x' });
-      store.dispatch({ type: 'PICK_SPOT', spot: 1, player: 'x' });
-      store.dispatch({ type: 'PICK_SPOT', spot: 2, player: 'x' });
-
-      expect(winner(undefined, { type: 'CHECK_WINNER' }))
-        .to.equal('x');
     });
   });
 

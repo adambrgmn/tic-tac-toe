@@ -1,4 +1,5 @@
 export const CHECK_WINNER = 'CHECK_WINNER';
+export const GAME_ENDED = 'GAME_ENDED';
 export const HIDE_SETTINGS = 'HIDE_SETTINGS';
 export const PICK_SPOT = 'PICK_SPOT';
 export const RESET_GAME = 'RESET_GAME';

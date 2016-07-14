@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 
-import onSpotClick from '../../../../../../../services/onSpotClick';
+import playRound from '../../../../../../../services/playRound';
 import GameBoardPlayer from '../GameBoardPlayer';
 
 export function GameBoardSpot({ index, player, activePlayer, winner, onClick }) {
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick: onSpotClick(dispatch),
+  onClick: playRound(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameBoardSpot);

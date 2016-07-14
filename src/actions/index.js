@@ -7,6 +7,11 @@ export const checkWinner = () => ({
   type: types.CHECK_WINNER,
 });
 
+export const gameEnded = (winner) => ({
+  type: types.GAME_ENDED,
+  winner,
+});
+
 export const hideSettings = () => ({
   type: types.HIDE_SETTINGS,
 });
