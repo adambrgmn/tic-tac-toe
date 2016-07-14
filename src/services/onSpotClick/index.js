@@ -30,7 +30,7 @@ export default function onSpotClick(dispatch) {
       pickComputerSpot().then(res => {
         // Dispatch an action to pick
         // a spot for the computer
-        dispatch(pickSpot(...res));
+        dispatch(pickSpot(res.player, res.index));
 
         // Set the next player
         dispatch(setNextPlayer());
