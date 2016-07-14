@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 
-import playRound from '../../../../../../../services/playRound';
-import Player from '../../../../../../../components/Player';
+import playRound from '../../../services/playRound';
+import Player from '../../Player';
 
 export function GameBoardSpot({ index, player, activePlayer, winner, onClick }) {
   const cxRect = {

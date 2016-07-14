@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-export default function GameBoardGroup({ customClassName, children }) {
+export default function SVGGroup({ customClassName, children }) {
   const cx = {
-    'game-board-group': true,
+    'svg-group': true,
   };
 
   return <g className={classNames(cx, customClassName)}>{children}</g>;
 }
 
-GameBoardGroup.propTypes = {
+SVGGroup.propTypes = {
   customClassName: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,

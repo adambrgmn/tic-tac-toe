@@ -1,5 +1,8 @@
-// Dependencies
-@import './styles/family';
+// Libraries
+@import './styles/lib/family';
+@import '~animatewithsass';
+
+// Variables
 @import './styles/variables';
 
 // Scenes
@@ -7,6 +10,8 @@
 
 // Components
 @import './components/Player/styles';
+@import './components/GameBoard/styles';
+@import './components/WinnerMessage/styles';
 
 body {
   background: $color-red;

@@ -1,11 +1,9 @@
-.game-playerX-line,
-.game-playerO-circle {
+.game-player {
   fill: none;
   stroke: $color-white;
   stroke-width: 5px;
 }
 
-.game-playerX-line.inverted,
-.game-playerO-circle.inverted {
+.game-player.inverted {
   stroke: $color-red;
 }

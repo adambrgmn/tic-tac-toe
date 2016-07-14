@@ -1,4 +1,10 @@
 // Components
 @import './GameBoardBorder/styles';
-@import './GameBoardGroup/styles';
 @import './GameBoardSpot/styles';
+
+.game-board {
+  position: absolute;
+  top: 12.5vw;
+  left: 25vw;
+  width: 50vw;
+}

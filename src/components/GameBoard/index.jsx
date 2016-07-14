@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 
-import GameBoardGroup from './GameBoardGroup';
 import GameBoardBorder from './GameBoardBorder';
 import GameBoardSpot from './GameBoardSpot';
-import SVGRoot from '../../../../../../components/SVGRoot';
+import SVGRoot from '../SVGRoot';
+import SVGGroup from '../SVGGroup';
 
 export function GameBoard({ brick }) {
   const lines = [
@@ -17,15 +17,15 @@ export function GameBoard({ brick }) {
 
   return (
     <SVGRoot customClassName="game-board" width={440} height={440}>
-      <GameBoardGroup>
+      <SVGGroup customClassName="game-board-group">
         {lines.map(line => (
           <GameBoardBorder
             key={line.customClassName}
             {...line}
           />
         ))}
-      </GameBoardGroup>
-      <GameBoardGroup>
+      </SVGGroup>
+      <SVGGroup customClassName="game-board-group">
         {brick.map((spot, i) => (
           <GameBoardSpot
             key={i}
@@ -33,7 +33,7 @@ export function GameBoard({ brick }) {
             player={spot}
           />
         ))}
-      </GameBoardGroup>
+      </SVGGroup>
     </SVGRoot>
   );
 }
