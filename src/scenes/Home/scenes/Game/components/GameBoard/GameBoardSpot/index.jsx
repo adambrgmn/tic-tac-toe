@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 
 import playRound from '../../../../../../../services/playRound';
-import GameBoardPlayer from '../GameBoardPlayer';
+import Player from '../../../../../../../components/Player';
 
 export function GameBoardSpot({ index, player, activePlayer, winner, onClick }) {
   const cxRect = {
@@ -13,8 +13,8 @@ export function GameBoardSpot({ index, player, activePlayer, winner, onClick }) 
   };
 
   const playerPin = player ?
-    <GameBoardPlayer player={player} /> :
-    <GameBoardPlayer player={activePlayer} />;
+    <Player player={player} /> :
+    <Player player={activePlayer} />;
 
   return (
     <g

@@ -4,3 +4,8 @@
   stroke: $color-white;
   stroke-width: 5px;
 }
+
+.game-playerX-line.inverted,
+.game-playerO-circle.inverted {
+  stroke: $color-red;
+}

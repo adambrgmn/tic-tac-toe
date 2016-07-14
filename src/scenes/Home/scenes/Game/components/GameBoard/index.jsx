@@ -5,6 +5,7 @@ import { List } from 'immutable';
 import GameBoardGroup from './GameBoardGroup';
 import GameBoardBorder from './GameBoardBorder';
 import GameBoardSpot from './GameBoardSpot';
+import SVGRoot from '../../../../../../components/SVGRoot';
 
 export function GameBoard({ brick }) {
   const lines = [
@@ -15,7 +16,7 @@ export function GameBoard({ brick }) {
   ];
 
   return (
-    <svg className="game-board" viewBox="0 0 440 440">
+    <SVGRoot customClassName="game-board" width={440} height={440}>
       <GameBoardGroup>
         {lines.map(line => (
           <GameBoardBorder
@@ -33,7 +34,7 @@ export function GameBoard({ brick }) {
           />
         ))}
       </GameBoardGroup>
-    </svg>
+    </SVGRoot>
   );
 }
 
