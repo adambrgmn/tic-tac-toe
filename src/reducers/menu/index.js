@@ -12,17 +12,13 @@ import { SET_NEXT_MENU_STATE, RESET_MENU } from '../../constants/actionTypes';
  * @return {String}        A string representing new state
  */
 export default function menu(state = menuStates.root, action) {
-  const acceptedState = Object.keys(menuStates).reduce((prev, curr) => {
-    if (menuStates[curr] === action.next) return true;
-    return prev;
-  }, false);
+  const acceptedState = action.next >= menuStates.root && action.next <= menuStates.single;
 
   switch (action.type) {
     case SET_NEXT_MENU_STATE:
       if (!acceptedState) {
         /* eslint-disable max-len */
-        const accepted = Object.keys(menuStates).join(', ');
-        warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are ${accepted}`);
+        warning(`Reducer.menu: "${action.next}" is not an accepted state. \nAccepted states are between ${menuStates.root} and ${menuStates.single}`);
         /* eslint-enable max-len */
         return state;
       }

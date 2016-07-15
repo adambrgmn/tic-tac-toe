@@ -6,13 +6,15 @@
 // Variables
 @import './styles/variables';
 
+// Components
+@import './components/GameBoard/styles';
+@import './components/MenuButton/styles';
+@import './components/MenuIcon/styles';
+@import './components/Player/styles';
+@import './components/WinnerMessage/styles';
+
 // Scenes
 @import './scenes/Home/styles';
-
-// Components
-@import './components/Player/styles';
-@import './components/GameBoard/styles';
-@import './components/WinnerMessage/styles';
 
 body {
   margin: 0;

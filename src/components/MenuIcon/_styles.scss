@@ -1,0 +1,13 @@
+.menu-icon svg {
+  width: 50%;
+  height: 50%;
+}
+
+.menu-icon line {
+  stroke: $color-white;
+  stroke-width: 10px;
+}
+
+.menu-icon circle {
+  fill: $color-white;
+}

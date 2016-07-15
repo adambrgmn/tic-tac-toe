@@ -1,6 +1,13 @@
 // Colors
 $color-white: #fff;
 $color-red: #f00;
+$color-red-hover: darken($color-red, 20%);
 
 // Fonts
 $font-family: 'Fira Sans', sans-serif;
+
+// Menu buttons
+$menu-button-base: 12rem;
+$menu-button-lg: $menu-button-base;
+$menu-button-md: ($menu-button-base * (1 / 2));
+$menu-button-sm: ($menu-button-base * (1 / 3));

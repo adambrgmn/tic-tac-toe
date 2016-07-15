@@ -17,11 +17,16 @@ export const gameModes = {
   multi: 'mulit',
 };
 
+export const menuButtonSizes = {
+  lg: 'lg',
+  md: 'md',
+  sm: 'sm',
+};
+
 export const menuStates = {
-  root: 'root',
-  expanded: 'expanded',
-  single: 'single',
-  multi: 'multi',
+  root: 0,
+  expanded: 1,
+  single: 2,
 };
 
 export const screens = {
