@@ -4,13 +4,8 @@
 
 .game-board {
   position: absolute;
-  top: 12.5vw;
-  left: 25vw;
-  width: 50vw;
-
-  @include fadeIn($delay: 1s);
-}
-
-.screen-transition-leave .game-board {
-  @include fadeOut();
+  top: 50%;
+  left: 50%;
+  width: 30rem;
+  transform: translate(-50%, -50%);
 }

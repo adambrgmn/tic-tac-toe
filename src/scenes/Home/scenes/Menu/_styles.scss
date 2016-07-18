@@ -17,6 +17,9 @@
 }
 
 // newGame
+.open > .menu-button-newGame > .menu-icon-newGame {
+  transform: rotate(45deg);
+}
 
 // vs
 .active > .menu-button-vsComputer {
@@ -48,4 +51,28 @@
 
 .active > .menu-button-levelMaster {
   top: -($menu-button-md * 3);
+}
+
+// Animations
+
+.section-menu.screen-transition-enter {
+  @include screenTransition(menuEnter);
+}
+
+.section-menu.screen-transition-leave {
+  @include screenTransition(menuLeave);
+}
+
+@keyframes menuEnter {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  55% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes menuLeave {
+  0% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { opacity: 0; }
 }

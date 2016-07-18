@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import GameBoard from '../../../../components/GameBoard';
 import WinnerMessage from '../../../../components/WinnerMessage';
+import TransitionCover from '../../../../components/TransitionCover';
 
 export function Game({ winner }) {
   const displayWinnerMessage = winner ? <WinnerMessage winner={winner} /> : null;
@@ -17,6 +18,7 @@ export function Game({ winner }) {
       >
         {displayWinnerMessage}
       </ReactCSSTransitionGroup>
+      <TransitionCover />
     </div>
   );
 }

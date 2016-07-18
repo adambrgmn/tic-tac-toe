@@ -8,54 +8,44 @@
 }
 
 .section-game.screen-transition-enter {
-  animation-name: growIn;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-  backface-visibility: hidden;
+  @include screenTransition(screenEnter);
+
+  .game-board {
+    @include screenTransition(boardEnter);
+  }
 }
 
 .section-game.screen-transition-leave {
-  animation-name: growOut;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-  backface-visibility: hidden;
-}
+  @include screenTransition(screenLeave);
 
-@keyframes growIn {
-  0% {
-    border-radius: 100%;
-    transform: scale(0);
-  }
-
-  90% {
-    border-radius: 100%;
-    transform: scale(2);
-  }
-
-  100% {
-    border-radius: 0;
-    transform: scale(1);
+  .game-board {
+    @include screenTransition(boardLeave);
   }
 }
 
-@keyframes growOut {
-  0% {
-    border-radius: 0;
-    transform: scale(1);
-  }
+@keyframes screenEnter {
+  0% { background: none; }
+  50% { background: none; }
+  55% { background: $color-red; }
+}
 
-  10% {
-    border-radius: 100%;
-    transform: scale(2);
-  }
+@keyframes screenLeave {
+  0% { background: $color-red; }
+  50% { background: $color-red; }
+  55% { background: none; }
+  100% { background: none; }
+}
 
-  100% {
-    border-radius: 100%;
-    transform: scale(0);
-  }
+@keyframes boardEnter {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  55% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes boardLeave {
+  0% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { opacity: 0; }
 }

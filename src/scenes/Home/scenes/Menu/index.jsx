@@ -1,12 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setNextMenuState } from '../../../../actions';
+import {
+  setNextMenuState,
+  setAiLevel,
+  setGameMode,
+  setNextScreen,
+} from '../../../../actions';
+import { gameModes, aiLevels, screens } from '../../../../constants';
 
 import MenuButtonGroup from '../../../../components/MenuButtonGroup';
 import MenuButton from '../../../../components/MenuButton';
 
-export function Menu({ openCloseMenu, menuLevel }) {
+export function Menu({ openCloseMenu, startNewGame, menuLevel }) {
   return (
     <div className="section section-menu">
       <MenuButtonGroup level={0}>
@@ -17,6 +23,7 @@ export function Menu({ openCloseMenu, menuLevel }) {
               icon="levelMaster"
               customClassName="menu-button-levelMaster"
               size="sm"
+              onMenuButtonClick={() => startNewGame(gameModes.single, aiLevels.two)}
             />
 
             <MenuButton
@@ -24,6 +31,7 @@ export function Menu({ openCloseMenu, menuLevel }) {
               icon="levelNovice"
               customClassName="menu-button-levelNovice"
               size="sm"
+              onMenuButtonClick={() => startNewGame(gameModes.single, aiLevels.one)}
             />
 
             <MenuButton
@@ -31,6 +39,7 @@ export function Menu({ openCloseMenu, menuLevel }) {
               icon="levelBlind"
               customClassName="menu-button-levelBlind"
               size="sm"
+              onMenuButtonClick={() => startNewGame(gameModes.single, aiLevels.zero)}
             />
           </MenuButtonGroup>
 
@@ -47,6 +56,7 @@ export function Menu({ openCloseMenu, menuLevel }) {
             icon="vsFriend"
             customClassName="menu-button-vsFriend"
             size="md"
+            onMenuButtonClick={() => startNewGame(gameModes.multi)}
           />
         </MenuButtonGroup>
 
@@ -65,6 +75,7 @@ export function Menu({ openCloseMenu, menuLevel }) {
 Menu.propTypes = {
   menuLevel: PropTypes.number,
   openCloseMenu: PropTypes.func,
+  startNewGame: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -72,9 +83,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  openCloseMenu: (level, menuLevel) => {
-    if (level === menuLevel) return dispatch(setNextMenuState(level + 1));
+  openCloseMenu: (level, currentLevel) => {
+    if (level === currentLevel) return dispatch(setNextMenuState(level + 1));
     return dispatch(setNextMenuState(level));
+  },
+  startNewGame: (gameMode, aiLevel) => {
+    if (gameMode === gameModes.single) {
+      dispatch(setAiLevel(aiLevel));
+    }
+
+    dispatch(setGameMode(gameMode));
+    dispatch(setNextScreen(screens.game));
   },
 });
 

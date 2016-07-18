@@ -39,8 +39,8 @@
 .menu-button-text {
   position: absolute;
   top: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0);
+  left: 0;
+  width: 100%;
   color: black;
   font-family: $font-family;
   font-size: 0.8rem;
@@ -53,6 +53,7 @@
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
+  text-align: left;
 }
 
 .menu-button:hover .menu-button-text {
@@ -63,4 +64,10 @@
 .menu-button-sm:hover .menu-button-text {
   top: 50%;
   left: 120%;
+}
+
+.open > .menu-button-vsComputer .menu-button-text {
+  top: 1rem;
+  left: 0;
+  opacity: 0;
 }

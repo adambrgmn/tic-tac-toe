@@ -1,19 +1,28 @@
 .winner-message {
   position: absolute;
-  top: 12.5vw;
-  left: 25vw;
-  width: 50vw;
-  height: 50vw;
+  top: 50%;
+  left: 50%;
+  width: 30rem;
+  height: 30rem;
+  transform: translate(-50%, -50%);
   background: transparentize($color-white, 0.1);
   border-radius: 100%;
 }
 
 .winner-message-enter {
-  @include bounceIn();
+  animation: bounceMessageIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }
 
 .winner-message-leave {
-  @include bounceOut();
+  animation: bounceMessageOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }
 
 .winner-message-text {
@@ -50,4 +59,14 @@
   &:hover {
     color: $color-red;
   }
+}
+
+@keyframes bounceMessageIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounceMessageOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

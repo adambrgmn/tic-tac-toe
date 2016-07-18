@@ -14,8 +14,8 @@ export function Home({ screen }) {
     <div>
       <ReactCSSTransitionGroup
         transitionName="screen-transition"
-        transitionEnterTimeout={1000}
-        transitionLeaveTimeout={2000}
+        transitionEnterTimeout={3000}
+        transitionLeaveTimeout={3000}
       >
         {displayMenu}
         {displayGame}

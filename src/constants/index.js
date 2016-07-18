@@ -14,7 +14,7 @@ export const aiLevels = {
 
 export const gameModes = {
   single: 'single',
-  multi: 'mulit',
+  multi: 'multi',
 };
 
 export const menuButtonSizes = {
