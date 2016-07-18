@@ -127,9 +127,11 @@ const mapDispatchToProps = (dispatch) => ({
   hideSettingsClick: () => dispatch(hideSettings()),
   goToMenuClick: () => {
     dispatch(hideSettings());
-    dispatch(resetMenu());
-    dispatch(resetGame());
-    dispatch(resetScreen());
+    setTimeout(() => {
+      dispatch(resetMenu());
+      dispatch(resetGame());
+      dispatch(resetScreen());
+    }, 300);
   },
   resetGameClick: () => {
     dispatch(hideSettings());
