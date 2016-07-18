@@ -1,0 +1,66 @@
+.settings-button {
+  display: inline-block;
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: $font-family;
+  font-size: 1rem;
+  color: $color-black;
+}
+
+.settings-button-type-text {
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.settings-button-type-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  transition: background 0.3s, opacity 0.3s;
+
+  .settings-button-text {
+    @include visuallyHidden;
+  }
+}
+
+.settings-button-hideSettings {
+  background: none;
+}
+
+.settings-container-menu {
+  .settings-button-type-text {
+    &:hover { color: $color-white; }
+  }
+
+  .settings-button-type-icon {
+    background: $color-white;
+
+    &:hover,
+    &.active {
+      opacity: 0.8;
+    }
+
+    line {
+      stroke: $color-red;
+    }
+  }
+}
+
+.settings-container-game {
+  .settings-button-type-text {
+    &:hover { color: $color-red; }
+  }
+
+  .settings-button-type-icon {
+    background: $color-red;
+
+    &:hover,
+    &.active {
+      background: $color-red-hover;
+    }
+  }
+}

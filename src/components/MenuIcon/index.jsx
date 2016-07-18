@@ -36,6 +36,13 @@ export default function MenuIcon({ icon }) {
       ];
       break;
 
+    case 'hideSettings':
+      selectedIcon = [
+        <line key="line1" x1="5" y1="5" x2="55" y2="55" />,
+        <line key="line2" x1="5" y1="55" x2="55" y2="5" />,
+      ];
+      break;
+
     case 'newGame':
     default:
       selectedIcon = [

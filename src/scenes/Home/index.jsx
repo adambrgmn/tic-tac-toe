@@ -8,6 +8,7 @@ import { screens } from '../../constants';
 import Menu from './scenes/Menu';
 import Game from './scenes/Game';
 import Message from '../../components/Message';
+import Settings from '../../components/Settings';
 
 export class Home extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ export class Home extends Component {
           {displayGame}
         </ReactCSSTransitionGroup>
         <Message />
+        <Settings />
       </div>
     );
   }

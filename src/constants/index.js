@@ -21,6 +21,7 @@ export const menuButtonSizes = {
   lg: 'lg',
   md: 'md',
   sm: 'sm',
+  xs: 'xs',
 };
 
 export const menuStates = {

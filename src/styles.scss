@@ -12,13 +12,26 @@
 @import './components/MenuIcon/styles';
 @import './components/Message/styles';
 @import './components/Player/styles';
+@import './components/Settings/styles';
 @import './components/TransitionCover/styles';
 @import './components/WinnerMessage/styles';
 
 // Scenes
 @import './scenes/Home/styles';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  max-width: 100vw;
+  max-height: 100vw;
+  overflow: hidden;
+  color: $color-black;
 }
+
+button:focus { outline: none; }
