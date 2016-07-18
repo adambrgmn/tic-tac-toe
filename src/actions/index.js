@@ -12,6 +12,10 @@ export const gameEnded = (winner) => ({
   winner,
 });
 
+export const hideMessage = () => ({
+  type: types.HIDE_MESSAGE,
+});
+
 export const hideSettings = () => ({
   type: types.HIDE_SETTINGS,
 });
@@ -20,6 +24,11 @@ export const pickSpot = (player, spot) => ({
   type: types.PICK_SPOT,
   player,
   spot,
+});
+
+export const printMessage = (message) => ({
+  type: types.PRINT_NEW_MESSAGE,
+  message,
 });
 
 export const resetGame = () => ({

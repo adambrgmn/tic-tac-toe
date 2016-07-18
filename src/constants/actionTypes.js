@@ -1,7 +1,9 @@
 export const CHECK_WINNER = 'CHECK_WINNER';
 export const GAME_ENDED = 'GAME_ENDED';
+export const HIDE_MESSAGE = 'HIDE_MESSAGE';
 export const HIDE_SETTINGS = 'HIDE_SETTINGS';
 export const PICK_SPOT = 'PICK_SPOT';
+export const PRINT_NEW_MESSAGE = 'PRINT_NEW_MESSAGE';
 export const RESET_GAME = 'RESET_GAME';
 export const RESET_MENU = 'RESET_MENU';
 export const RESET_SCREEN = 'RESET_SCREEN';

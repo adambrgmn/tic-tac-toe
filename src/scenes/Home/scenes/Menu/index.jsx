@@ -6,13 +6,20 @@ import {
   setAiLevel,
   setGameMode,
   setNextScreen,
+  printMessage,
+  hideMessage,
 } from '../../../../actions';
 import { gameModes, aiLevels, screens } from '../../../../constants';
 
 import MenuButtonGroup from '../../../../components/MenuButtonGroup';
 import MenuButton from '../../../../components/MenuButton';
 
-export function Menu({ openCloseMenu, startNewGame, menuLevel }) {
+export function Menu({
+  openCloseMenu,
+  startNewGame,
+  printWarningMessage,
+  menuLevel,
+}) {
   return (
     <div className="section section-menu">
       <MenuButtonGroup level={0}>
@@ -56,7 +63,7 @@ export function Menu({ openCloseMenu, startNewGame, menuLevel }) {
             icon="vsFriend"
             customClassName="menu-button-vsFriend"
             size="md"
-            onMenuButtonClick={() => startNewGame(gameModes.multi)}
+            onMenuButtonClick={printWarningMessage}
           />
         </MenuButtonGroup>
 
@@ -76,6 +83,7 @@ Menu.propTypes = {
   menuLevel: PropTypes.number,
   openCloseMenu: PropTypes.func,
   startNewGame: PropTypes.func,
+  printWarningMessage: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -94,6 +102,10 @@ const mapDispatchToProps = (dispatch) => ({
 
     dispatch(setGameMode(gameMode));
     dispatch(setNextScreen(screens.game));
+  },
+  printWarningMessage: () => {
+    dispatch(printMessage('Not here yet! Wait just a few weeks!'));
+    setTimeout(() => dispatch(hideMessage()), 3000);
   },
 });
 
