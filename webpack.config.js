@@ -92,8 +92,8 @@ switch (TARGET) {
         port: process.env.PORT,
         poll: ENABLE_POLLING,
       }),
-      parts.enableReactPerformanceTools(),
-      parts.npmInstall()
+      parts.enableReactPerformanceTools()
+      // parts.npmInstall()
     );
 }
 
