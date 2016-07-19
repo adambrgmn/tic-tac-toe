@@ -6,9 +6,10 @@
   "scripts": {
     "test": "mocha",
     "test:watch": "npm test -- --watch",
-    "test:ai": "babel-node test/aiTest.js",
-    "start": "node ./server.js",
-    "build": "cross-env NODE_ENV=production webpack -p --progress"
+    "lint": "eslint ./src --ext .js --ext .jsx --ignore-path .gitignore --ignore-pattern dist --cache",
+    "build": "webpack",
+    "stats": "webpack --profile --json > stats.json",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -41,17 +42,20 @@
     "enzyme": "^2.3.0",
     "eslint": "^3.0.0",
     "eslint-config-airbnb": "^9.0.1",
+    "eslint-loader": "^1.4.1",
     "eslint-plugin-import": "^1.10.1",
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
+    "html-webpack-template": "^5.0.0",
     "jade": "^1.11.0",
     "jade-loader": "^0.8.0",
     "jsdom": "^9.4.0",
     "md5": "^2.1.0",
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
+    "npm-install-webpack-plugin": "^4.0.4",
     "optimist": "^0.6.1",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "^15.2.0",
@@ -62,7 +66,8 @@
     "stylelint-config-standard": "^11.0.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.14.0"
+    "webpack-merge": "^0.14.0",
+    "webpack-validator": "^2.2.3"
   },
   "dependencies": {
     "animatewithsass": "git+https://github.com/geoffgraham/animate.scss.git",
@@ -73,14 +78,19 @@
     "compression": "^1.6.2",
     "cross-env": "^1.0.8",
     "ejs": "^2.4.2",
+    "eslint": "^3.0.0",
+    "eslint-loader": "^1.4.1",
+    "expose-loader": "^0.7.1",
     "express": "^4.14.0",
     "express-ejs-layouts": "^2.1.0",
     "immutable": "^3.8.1",
     "normalize-scss": "^5.0.3",
+    "piping": "^1.0.0-rc.3",
     "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "resolve-url-loader": "^1.6.0"
   }
 }
