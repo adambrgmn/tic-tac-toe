@@ -1,8 +1,8 @@
 {
   "name": "tic-tac-toe",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "A small game built as part of a challnge from FreeCodeCamp",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha",
     "test:watch": "npm test -- --watch",
