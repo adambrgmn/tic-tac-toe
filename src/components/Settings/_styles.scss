@@ -1,0 +1,59 @@
+@import 'components/SettingsButton/styles';
+@import 'components/ShowSettingsButton/styles';
+
+.settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15rem;
+  height: 100%;
+  padding: 1rem;
+  transition: right 0.3s ease;
+}
+
+.hide .settings {
+  right: -15rem;
+}
+
+.settings-container-menu .settings {
+  background: $color-red;
+  h3 { color: $color-white; }
+  p { color: $color-white; }
+  a {
+    color: $color-white;
+    &:hover { color: $color-black; }
+  }
+}
+
+.settings-container-game .settings {
+  background: $color-white;
+  h3 { color: $color-black; }
+  p { color: $color-black; }
+  a {
+    color: $color-black;
+    &:hover { color: $color-red; }
+  }
+}
+
+.settings-section {
+  font-family: $font-family;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.settings-section-aiLevel {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.settings-section-credits {
+  margin-top: 10rem;
+  p { font-size: 0.75rem; }
+  a { transition: color 0.3s; }
+}

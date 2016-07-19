@@ -1,0 +1,37 @@
+// Colors
+$color-black: #333;
+$color-white: #fff;
+$color-red: #f00;
+$color-red-hover: darken($color-red, 20%);
+
+// Fonts
+$font-family: 'Fira Sans', sans-serif;
+
+// Menu buttons
+$menu-button-base: 12rem;
+$menu-button-lg: $menu-button-base;
+$menu-button-md: ($menu-button-base * (1 / 2));
+$menu-button-sm: ($menu-button-base * (1 / 3));
+
+// Screen transition
+$transition-duration: 3s;
+
+@mixin screenTransition($keyframes) {
+  animation: $keyframes;
+  animation-duration: $transition-duration;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+
+// Visually hidden text
+@mixin visuallyHidden() {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}

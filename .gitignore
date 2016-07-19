@@ -1,5 +1,8 @@
+assets.json
 dist
 stats.json
+*.idlk
+.eslintcache
 
 # Logs
 logs

@@ -1,8 +1,10 @@
-require('babel-register')();
+process.env.NODE_ENV = 'test';
 
-var jsdom = require('jsdom').jsdom;
+import { jsdom } from 'jsdom';
+import chai from 'chai';
+import chaiImmutable from 'chai-immutable';
 
-var exposedProperties = ['window', 'navigator', 'document'];
+const exposedProperties = ['window', 'navigator', 'document'];
 
 global.document = jsdom('');
 global.window = document.defaultView;
@@ -17,4 +19,4 @@ global.navigator = {
   userAgent: 'node.js',
 };
 
-documentRef = document;
+chai.use(chaiImmutable);

@@ -1,0 +1,15 @@
+export const CHECK_WINNER = 'CHECK_WINNER';
+export const GAME_ENDED = 'GAME_ENDED';
+export const HIDE_MESSAGE = 'HIDE_MESSAGE';
+export const HIDE_SETTINGS = 'HIDE_SETTINGS';
+export const PICK_SPOT = 'PICK_SPOT';
+export const PRINT_NEW_MESSAGE = 'PRINT_NEW_MESSAGE';
+export const RESET_GAME = 'RESET_GAME';
+export const RESET_MENU = 'RESET_MENU';
+export const RESET_SCREEN = 'RESET_SCREEN';
+export const SET_AI_LEVEL = 'SET_AI_LEVEL';
+export const SET_GAME_MODE = 'SET_GAME_MODE';
+export const SET_NEXT_MENU_STATE = 'SET_NEXT_MENU_STATE';
+export const SET_NEXT_PLAYER = 'SET_NEXT_PLAYER';
+export const SET_NEXT_SCREEN = 'SET_NEXT_SCREEN';
+export const SHOW_SETTINGS = 'SHOW_SETTINGS';

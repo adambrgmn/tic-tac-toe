@@ -1,0 +1,51 @@
+.section-game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-red;
+}
+
+.section-game.screen-transition-enter {
+  @include screenTransition(screenEnter);
+
+  .game-board {
+    @include screenTransition(boardEnter);
+  }
+}
+
+.section-game.screen-transition-leave {
+  @include screenTransition(screenLeave);
+
+  .game-board {
+    @include screenTransition(boardLeave);
+  }
+}
+
+@keyframes screenEnter {
+  0% { background: none; }
+  50% { background: none; }
+  55% { background: $color-red; }
+}
+
+@keyframes screenLeave {
+  0% { background: $color-red; }
+  50% { background: $color-red; }
+  55% { background: none; }
+  100% { background: none; }
+}
+
+@keyframes boardEnter {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  55% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes boardLeave {
+  0% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { opacity: 0; }
+}

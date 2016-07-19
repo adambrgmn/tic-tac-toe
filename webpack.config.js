@@ -1,115 +1,100 @@
-const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
-const pkg = require('./package.json');
+const validate = require('webpack-validator');
+
+const parts = require('./lib/parts');
 
 const TARGET = process.env.npm_lifecycle_event;
+const ENABLE_POLLING = process.env.ENABLE_POLLING;
 const PATHS = {
   app: path.join(__dirname, 'src'),
+  style: [
+    path.join(__dirname, 'src', 'styles.scss'),
+  ],
   build: path.join(__dirname, 'dist'),
-  style: path.join(__dirname, 'src/main.scss'),
+  test: path.join(__dirname, 'tests'),
 };
 
 process.env.BABEL_ENV = TARGET;
 
-const common = {
-  entry: {
-    bundle: PATHS.app,
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js',
-    publicPath: '/',
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['babel?cacheDirectory'],
-        include: PATHS.app,
-      },
-      {
-        test: /\.jade$/,
-        loader: 'jade',
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'templates/index.jade',
-      appMountId: 'app',
-      inject: false,
-      title: 'React Boilerplate',
-      subtitle: 'With Webpack and ES6',
-      description: 'A ReactJS boilerplate',
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-  ],
-};
-
-if (TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    devtool: 'eval-source-map',
-    devServer: {
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-      stats: 'errors-only',
-      host: process.env.HOST,
-      port: process.env.PORT,
-    },
-    module: {
-      loaders: [
-        {
-          test: /\.scss$/,
-          loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'],
-          include: PATHS.app,
-        },
-      ],
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
-    ],
-  });
-}
-
-if (TARGET === 'build' || TARGET === 'build:stats') {
-  module.exports = merge(common, {
+const common = merge(
+  {
     entry: {
-      vendor: Object.keys(pkg.dependencies),
+      app: PATHS.app,
     },
     output: {
-      filename: '[name].[hash].min.js',
+      path: PATHS.build,
+      filename: '[name].js',
+      // TODO: Set publicPath to match your GitHub project name
+      // E.g., '/kanban-demo/'. Webpack will alter asset paths
+      // based on this. You can even use an absolute path here
+      // or even point to a CDN.
+      //publicPath: ''
     },
-    module: {
-      loaders: [
-        {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
+    resolve: {
+      extensions: ['', '.js', '.jsx'],
+    },
+  },
+  parts.indexTemplate({ title: 'Tic-Tac-Toe', appMountId: 'app' }),
+  parts.loadJSX(PATHS.app),
+  parts.lintJSX(PATHS.app)
+);
+
+let config;
+
+switch (TARGET) {
+  case 'build':
+  case 'stats':
+    config = merge(
+      common,
+      {
+        devtool: 'source-map',
+        entry: {
+          style: PATHS.style,
         },
-      ],
-    },
-    plugins: [
-      new ExtractTextPlugin('style.[hash].min.css'),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env.BROWSER': true,
-        __DEV__: false,
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js',
+          chunkFilename: '[chunkhash].js',
+        },
+      },
+      parts.clean(PATHS.build),
+      parts.setFreeVariable('process.env.NODE_ENV', 'production'),
+      parts.extractBundle({
+        name: 'vendor',
+        entries: ['react', 'react-dom'],
       }),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[hash].min.js'),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false, screw_ie8: true },
+      parts.minify(),
+      parts.extractCSS(PATHS.style)
+    );
+    break;
+  case 'test':
+  case 'test:tdd':
+    config = merge(
+      common,
+      { devtool: 'inline-source-map' },
+      parts.loadIsparta(PATHS.app),
+      parts.loadJSX(PATHS.test)
+    );
+    break;
+  default:
+    config = merge(
+      common,
+      {
+        devtool: 'eval-source-map',
+        entry: {
+          style: PATHS.style,
+        },
+      },
+      parts.setupCSS(PATHS.style),
+      parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT,
+        poll: ENABLE_POLLING,
       }),
-      new CleanPlugin([PATHS.build]),
-    ],
-  });
+      parts.enableReactPerformanceTools()
+      // parts.npmInstall()
+    );
 }
+
+module.exports = validate(config, { quiet: true });

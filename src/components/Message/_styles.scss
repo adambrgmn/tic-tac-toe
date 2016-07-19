@@ -1,0 +1,14 @@
+.message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $font-family;
+  font-size: 1.2rem;
+
+  transition: opacity 0.3s;
+}
+
+.message.hide {
+  opacity: 0;
+}

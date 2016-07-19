@@ -1,0 +1,9 @@
+.game-player {
+  fill: none;
+  stroke: $color-white;
+  stroke-width: 5px;
+}
+
+.game-player.inverted {
+  stroke: $color-red;
+}
