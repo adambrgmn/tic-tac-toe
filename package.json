@@ -32,6 +32,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "chai-immutable": "^1.6.0",
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
     "enzyme": "^2.3.0",
@@ -67,7 +68,6 @@
   },
   "dependencies": {
     "animatewithsass": "git+https://github.com/geoffgraham/animate.scss.git",
-    "chai-immutable": "^1.6.0",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "normalize-scss": "^5.0.3",

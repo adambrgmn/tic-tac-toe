@@ -2,7 +2,6 @@ import { List } from 'immutable';
 import { expect } from 'chai';
 
 import brick from './index.js';
-import testAiVsAi from '../../../test/helpers/testAiVsAi';
 
 describe('Reducer: brick', () => {
   it('should return a List of 9 empty objects as initial state', () => {
