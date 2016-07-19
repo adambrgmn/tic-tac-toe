@@ -10,7 +10,7 @@
     "build": "webpack",
     "stats": "webpack --profile --json > stats.json",
     "start": "webpack-dev-server",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
