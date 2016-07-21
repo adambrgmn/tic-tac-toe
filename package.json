@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small game built as part of a challnge from FreeCodeCamp",
   "main": "src/index.js",
   "scripts": {
