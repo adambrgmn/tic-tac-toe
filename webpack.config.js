@@ -37,7 +37,11 @@ const common = merge(
   },
   parts.indexTemplate({ title: 'Tic-Tac-Toe', appMountId: 'app' }),
   parts.loadJSX(PATHS.app),
-  parts.lintJSX(PATHS.app)
+  parts.lintJSX(PATHS.app),
+  parts.setupImages({
+    img: path.join(__dirname, 'src', 'images'),
+    favicon: path.join(__dirname, 'src'),
+  })
 );
 
 let config;
