@@ -29,7 +29,7 @@ const common = merge(
       // E.g., '/kanban-demo/'. Webpack will alter asset paths
       // based on this. You can even use an absolute path here
       // or even point to a CDN.
-      //publicPath: ''
+      // publicPath: ''
     },
     resolve: {
       extensions: ['', '.js', '.jsx'],
@@ -37,7 +37,11 @@ const common = merge(
   },
   parts.indexTemplate({ title: 'Tic-Tac-Toe', appMountId: 'app' }),
   parts.loadJSX(PATHS.app),
-  parts.lintJSX(PATHS.app)
+  parts.lintJSX(PATHS.app),
+  parts.setupImages({
+    img: path.join(__dirname, 'src', 'images'),
+    favicon: path.join(__dirname, 'src'),
+  })
 );
 
 let config;

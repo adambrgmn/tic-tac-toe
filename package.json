@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small game built as part of a challnge from FreeCodeCamp",
   "main": "src/index.js",
   "scripts": {
@@ -45,6 +45,7 @@
     "eslint-plugin-react": "^5.2.2",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "gh-pages": "^0.11.0",
     "html-webpack-plugin": "^2.22.0",
     "html-webpack-template": "^5.0.0",
