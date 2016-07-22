@@ -15,34 +15,45 @@ import getFreeSpots from '../../../utils/getFreeSpots';
  * @return {Promise} A promise that will resolve to an index of
  * the most optimal move that the computer can take at that state
  */
-export default function pickLevel2Spot(state, ai) {
-  return new Promise(resolve => {
-    // Get a List of all unoccupied spots
+export default function pickLevel2Spot(s, p) {
+  const getAvailableSpots = ({ state, player }) => {
     const availableSpots = getFreeSpots(state);
+    return Promise.resolve({ state, player, availableSpots });
+  };
 
-    /**
-     * Iterate over all unoccupied spots and determine the
-     * minimax val for all the states.
-     *
-     * @return {List} A two dimensional List containg value pairs,
-     * of the spot (index) and the value (stateScore)
-     */
-    const availableNextStateScores = availableSpots.map(spot => {
-      const nextState = state.set(spot, ai);
-      const stateScore = getMinimaxVal(nextState, ai);
+  const getNextStateScores = ({
+    state,
+    player,
+    availableSpots,
+  }) => {
+    const availableNextStates = availableSpots.map(spot => ({
+      nextState: state.set(spot, player),
+      spot,
+    }));
 
-      return List([spot, stateScore]);
-    });
+    const stateScores = availableNextStates.map(({ nextState, spot }) => (
+      new Promise((resolve) => {
+        getMinimaxVal(nextState, player)
+          .then(stateScore => resolve(List([spot, stateScore])));
+      })
+    ));
 
-    // Sort the List of stateScores from smalles to the larges score
-    const sortedAvailableNextStateScores = availableNextStateScores.sort((prev, curr) => {
+    return Promise.all(stateScores);
+  };
+
+  const determineBestMove = stateScores => {
+    const stateScoresList = List(stateScores);
+    const sorted = stateScoresList.sort((prev, curr) => {
       const prevScore = prev.get(1);
       const currScore = curr.get(1);
 
       return prevScore - currScore;
     });
 
-    // Resolve and resolve the index of the most optimal move
-    return resolve(sortedAvailableNextStateScores.getIn([0, 0]));
-  });
+    return Promise.resolve(sorted.getIn([0, 0]));
+  };
+
+  return getAvailableSpots({ state: s, player: p })
+    .then(getNextStateScores)
+    .then(determineBestMove);
 }

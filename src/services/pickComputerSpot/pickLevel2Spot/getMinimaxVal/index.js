@@ -22,46 +22,29 @@ export default function getMinimaxVal(state, player) {
   const ai = player;
   const op = ai === 'x' ? 'o' : 'x';
 
-  // Return a named IIFE that also gets
-  // called recursively inside itself.
-  return (function minimax(s, p) {
-    // Determine if the current state is an
-    // ending state and if there is a winner
+  const minimax = (s, p) => {
     const winner = getWinner(s);
     if (winner) {
       const aiMoves = s.filter(spot => spot === ai).size;
       return getFinalScore(winner, ai, aiMoves);
     }
 
-    // Check if current player is ai
     const playingAsAi = p === ai;
-
-    // Set a base score to test against later
-    // relative to if the player is ai or not.
     let stateScore = playingAsAi ? 1000 : -1000;
 
-    // Get all available free spots to test against later
     const availableSpots = getFreeSpots(s);
 
-    // Determine the minimax score of each available spot
     availableSpots.forEach(spot => {
-      // Get next state with available spots applied
       const nextState = s.set(spot, p);
-
-      // Set the next player
       const nextPlayer = p === ai ? op : ai;
-
-      // Call minimax recursively to get
-      // the score of every possible state
       const nextStateScore = minimax(nextState, nextPlayer);
 
-      // The opponent wants to maximize
       if (!playingAsAi && nextStateScore > stateScore) stateScore = nextStateScore;
-      // The AI wants to minimize
       if (playingAsAi && nextStateScore < stateScore) stateScore = nextStateScore;
     });
 
-    // Finally return the score of the current state
     return stateScore;
-  }(state, op)); // It's important to call minimax with the opponent the first time
+  };
+
+  return Promise.resolve(minimax(state, op));
 }
